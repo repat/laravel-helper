@@ -15,4 +15,5 @@
 		"psr-4": {
            	 "repat\\LaravelHelper\\": "src/"
         }
+    }
 }
