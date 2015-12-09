@@ -17,7 +17,7 @@ class Helper {
      foreach ($describeObjects as $obj) {
        $tableHeader[] = $obj->Field;
      }
-     if (empty($tableHeader) {
+     if (empty($tableHeader)){
          return false;
      }
      return $tableHeader;
