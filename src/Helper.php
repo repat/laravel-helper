@@ -11,7 +11,6 @@ class Helper {
   }
 
   public static function getMySQLHeaders($table) {
-     $tableContent = DB::table($table)->get();
      $describeObjects = DB::select(DB::raw("DESCRIBE `" . $table . "`"));
      $tableHeader = array();
      foreach ($describeObjects as $obj) {
