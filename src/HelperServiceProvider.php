@@ -4,7 +4,7 @@ namespace repat\LaravelHelper;
 use repat\LaravelHelper\Helper;
 use Illuminate\Support\ServiceProvider;
 
-class GoutteServiceProvider extends ServiceProvider {
+class HelperServiceProvider extends ServiceProvider {
   /**
    * Indicates if loading of the provider is deferred.
    *

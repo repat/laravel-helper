@@ -1,5 +1,5 @@
-<?
-namespace repat\LaravelHelper
+<?php
+namespace repat\LaravelHelper;
 
 use DB;
 
@@ -12,11 +12,15 @@ class Helper {
 
   public static function getMySQLHeaders($table) {
      $tableContent = DB::table($table)->get();
-     $describeObjects = DB::select(DB::raw("DESCRIBE `" . $table . "`"));        
+     $describeObjects = DB::select(DB::raw("DESCRIBE `" . $table . "`"));
+     $tableHeader = array();
      foreach ($describeObjects as $obj) {
        $tableHeader[] = $obj->Field;
      }
-  return $tableHeader;      
+     if (empty($tableHeader) {
+         return false;
+     }
+     return $tableHeader;
   }
 }
 
