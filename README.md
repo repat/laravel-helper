@@ -24,3 +24,21 @@ print_r(Helper::getMySQLHeaders("test_table", true);
 
 // Array( [head1] => head1, [head2] => head2 )
 ```
+
+### Helper::files($folder) or Helper::getFilesFromFolder($folder)
+Returns an array of files in a folder without "." and "..". It doesn't atter if the string ends on "/" in either method.
+```php
+print_r(Helper::files("/home/user/"));
+// Array( [0] => file1.ext, [1] => file2.ext )
+
+print_r(Helper::getFilesFromFolder("/home/user"));
+// Array( [0] => file1.ext, [1] => file2.ext )
+```
+
+### Helper::getNumberOfRows($file)
+Gets the amount of rows efficiently from a `SplFileObject`
+```php
+file_put_contents("example.txt", "first \nsecond \nthird");
+echo Helper::getNumberOfRows(new SplFileObject("example.txt"));
+// 3
+```
