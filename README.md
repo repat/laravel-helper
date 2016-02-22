@@ -9,7 +9,7 @@ Removes folders from `/folder1/folder2/file.ext`
 Example:
 
 ```php
-echo Helper::str_wo_folders("/folder1/folder2/file.ext") // file.ext
+echo Helper::getStringWithoutFolder("/folder1/folder2/file.ext") // file.ext
 ```
 
 ### Helper::getMySQLHeaders($table, $assoc)
