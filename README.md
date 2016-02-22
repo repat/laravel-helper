@@ -2,7 +2,7 @@
 
 Some Helper functions I found useful when developing applications with laravel but didn't get around to make so pretty, I could submit them as a pull request.
 
-### Helper::str_wo_folders($str)
+### Helper::getStringWithoutFolder($str)
 
 Removes folders from `/folder1/folder2/file.ext`
 

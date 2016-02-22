@@ -8,7 +8,7 @@ class Helper
     
     const ASSOC_ARRAY = true;
 
-    public static function str_wo_folders($str) {
+    public static function getStringWithoutFolder($str) {
         $posOfLastSlash = strrpos($str, "/");
         return substr($str, $posOfLastSlash + 1, strlen($str));
     }
