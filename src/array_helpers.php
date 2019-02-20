@@ -55,3 +55,16 @@ if (!function_exists('array_delete_value')) {
         return array_diff($array, [$value]);
     }
 }
+
+if (!function_exists('contains_duplicates')) {
+    /**
+     * Check duplicate values in given array
+     *
+     * @param array $array
+     * @return bool
+     */
+    function contains_duplicates(array $array) : bool
+    {
+        return (count(array_unique($array)) < count($array));
+    }
+}

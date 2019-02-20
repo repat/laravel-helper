@@ -48,3 +48,54 @@ if (!function_exists('days_left_in_year')) {
         return days_this_year() - now()->dayOfYear;
     }
 }
+
+if (!function_exists('timezone_list')) {
+    /**
+     * A list of timezones
+     *
+     * @return array
+     */
+    function timezone_list() : array
+    {
+        $regions = [
+            DateTimeZone::AFRICA,
+            DateTimeZone::AMERICA,
+            DateTimeZone::ANTARCTICA,
+            DateTimeZone::ASIA,
+            DateTimeZone::ATLANTIC,
+            DateTimeZone::AUSTRALIA,
+            DateTimeZone::EUROPE,
+            DateTimeZone::INDIAN,
+            DateTimeZone::PACIFIC,
+        ];
+
+        $timezones = [];
+
+        foreach ($regions as $region) {
+            $timezones = array_merge($timezones, DateTimeZone::listIdentifiers($region));
+        }
+
+        $timezoneOffsets = [];
+
+        foreach ($timezones as $timezone) {
+            $tz = new DateTimeZone($timezone);
+            $timezoneOffsets[$timezone] = $tz->getOffset(new DateTime);
+        }
+
+        // sort timezone by offset
+        asort($timezoneOffsets);
+
+        $timezoneList = [];
+
+        foreach ($timezoneOffsets as $timezone => $offset) {
+            $offsetPrefix = $offset < 0 ? '-' : '+';
+            $offsetFormatted = gmdate('H:i', abs($offset));
+
+            $prettyOffset = "UTC${offsetPrefix}${offsetFormatted}";
+
+            $timezoneList[$timezone] = "(${prettyOffset}) $timezone";
+        }
+
+        return $timezoneList;
+    }
+}

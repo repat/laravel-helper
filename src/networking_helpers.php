@@ -24,7 +24,7 @@ if (!function_exists('domain_slug')) {
      * Gets hostname for full URL in a slug-friendly way
      *
      * @param string $domain
-     * @return string|bool
+     * @return string|null
      */
     function domain_slug(string $domain) : ?string
     {
