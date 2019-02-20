@@ -1,21 +1,28 @@
 {
-	"name": "repat/laravel-helper",
-	"description": "Some helper function for developing applications in laravel",
-	"keywords": ["laravel", "helper", "files", "header", "database", "strings"],
-	"homepage": "http://repat.de",
-	"license": "MIT",
-        "version" : "0.1.7",
-	"authors": [
-		{"name": "repat", "email": "repat@repat.de"}
-	],
-	"require": {
-		"php": ">=5.5.0",
-		"illuminate/support": "5.*"
-	},
-	"autoload": {
-		"psr-4": {
-           	 "repat\\LaravelHelper\\": "src/"
-        }
+    "name": "repat/laravel-helper",
+    "description": "Some helper function for developing applications in laravel",
+    "keywords": ["laravel", "helper", "files", "array", "database", "strings"],
+    "homepage": "http://repat.de",
+    "license": "MIT",
+        "version" : "0.1.8",
+    "authors": [
+        {"name": "repat", "email": "repat@repat.de"}
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "illuminate/support": "5.*",
+        "illuminate/database": "5.*",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "files": [
+            "src/array_helpers.php",
+            "src/database_helpers.php",
+            "src/misc_helpers.php",
+            "src/networking_helpers.php",
+            "src/object_helpers.php",
+            "src/string_helpers.php"
+        ]
     },
     "minimum-stability" : "dev"
 }
