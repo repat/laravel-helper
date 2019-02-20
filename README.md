@@ -35,9 +35,21 @@ print_r(array_key2value($array));
 Returns an array of MySQL headers/columns or empty array in case of an error. If the second parameter is set `true` (default is `false`) it returns an associative array.
 
 ```php
-print_r(mysql_headers("test_table");
+print_r(mysql_headers("test_table"));
 // returns: Array( [0] => head1, [1] => head2 )
 
-print_r(mysql_headers("test_table", $assoc = true);
+print_r(mysql_headers("test_table", $assoc = true));
 // returns: Array( [head1] => head1, [head2] => head2)
 ```
+
+## Undocumented in README
+* `array_delete_value()`
+* `human_filesize()`
+* `http_status_code()`
+* `object2array()`
+* `str_icontains()`
+* `str_replace_once()`
+* `title_case_wo_underscore()`
+* `hyphen2_`
+* `_2hypen()`
+* `regex_list()`

@@ -4,7 +4,7 @@
     "keywords": ["laravel", "helper", "files", "array", "database", "strings"],
     "homepage": "http://repat.de",
     "license": "MIT",
-        "version" : "0.1.8",
+        "version" : "0.1.9",
     "authors": [
         {"name": "repat", "email": "repat@repat.de"}
     ],
@@ -16,13 +16,21 @@
     },
     "autoload": {
         "files": [
+            "src/defines.php",
             "src/array_helpers.php",
             "src/database_helpers.php",
+            "src/date_helpers.php",
+            "src/html_helpers.php",
             "src/misc_helpers.php",
             "src/networking_helpers.php",
             "src/object_helpers.php",
+            "src/optional_packages_helpers.php",
             "src/string_helpers.php"
         ]
     },
-    "minimum-stability" : "dev"
+    "minimum-stability" : "dev",
+    "suggest": {
+        "dimsav/laravel-translatable": "Required to use translated_attributes()",
+        "league/commonmark" : "Required to use markdown2html()"
+    }
 }

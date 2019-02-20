@@ -27,3 +27,71 @@ if (!function_exists('mysql_headers')) {
         return $tableHeader;
     }
 }
+
+if (!function_exists('print_db_session')) {
+    /**
+     * Prints the session from the DB
+     *
+     * @param  string $table
+     * @return void
+     */
+    function print_db_session(string $table = 'sessions')
+    {
+        print_r(
+            unserialize(
+                base64_decode(
+                    \DB::table($table)
+                        ->where('user_id', auth()->id())
+                        ->first()
+                        ->payload
+                        )
+                    )
+                );
+    }
+}
+
+if (!function_exists('get_free_slug')) {
+    /**
+     * Looks up a free slug for the `$fqcn` eloquent model,
+     * Suggesting `$toSlug` for field `$field`
+     * Optionally, can ignore `$id`, which is usually `id` but can
+     * be replaced by primary key `$pk`
+     *
+     * Will add integer starting at 1 in case `str_slug($toSlug)` is taken already
+     *
+     * @param  string $toSlug
+     * @param  string $field
+     * @param  string $fqcn
+     * @param  int|null $id
+     * @param  string $pk
+     * @return string
+     */
+    function get_free_slug(string $toSlug, string $field, string $fqcn, ?int $id = null, string $pk = 'id') : string
+    {
+        //init
+        $counter = 1;
+
+        // first suggestion
+        $slug = str_slug($toSlug);
+
+        // make eloquent model
+        $query = resolve($fqcn)::where($field, $slug);
+
+        // exclude $id if set
+        if (isset($id)) {
+            $query = $query->where($pk, '<>', $id);
+        }
+
+        // search for a free slug
+        while (!empty($query->first())) {
+            $slug = str_slug($toSlug) . $counter;
+            $counter++;
+            $query = resolve($fqcn)::where($field, $slug);
+            if (isset($id)) {
+                $query = $query->where($pk, '<>', $id);
+            }
+        }
+
+        return $slug;
+    }
+}
