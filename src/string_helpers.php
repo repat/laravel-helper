@@ -4,13 +4,13 @@ if (!function_exists('str_icontains')) {
     /**
      * `str_contains()` case insensitive
      *
-     * @param  string $needle
      * @param  string $haystack
+     * @param  string $needle
      * @return bool
      */
-    function str_icontains(string $needle, string $haystack) : bool
+    function str_icontains(string $haystack, string $needle): bool
     {
-        return (strpos(strtolower($haystack), strtolower($needle)) === false);
+        return (strpos(strtolower($haystack), strtolower($needle)) !== false);
     }
 }
 
@@ -23,7 +23,7 @@ if (!function_exists('str_replace_once')) {
      * @param  string $subject
      * @return string
      */
-    function str_replace_once(string $search, string $replace, string $subject) : string
+    function str_replace_once(string $search, string $replace, string $subject): string
     {
         $firstChar = strpos($subject, $search);
         if ($firstChar !== false) {
@@ -44,9 +44,8 @@ if (!function_exists('str_bytes')) {
      * @param string $str
      * @return int
      */
-    function str_bytes(string $str) : int
+    function str_bytes(string $str): int
     {
-
 
         // Number of characters in string
         $strlen_var = strlen($str);
@@ -100,12 +99,11 @@ if (!function_exists('to_ascii')) {
      * @param  string $rawstring
      * @return string
      */
-    function to_ascii(string $rawstring) : string
+    function to_ascii(string $rawstring): string
     {
         return filter_var($rawstring, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
     }
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -114,27 +112,27 @@ if (!function_exists('to_ascii')) {
  */
 
 if (!function_exists('title_case_wo_underscore')) {
-    function title_case_wo_underscore(string $string) : string
+    function title_case_wo_underscore(string $string): string
     {
         return str_replace('_', ' ', title_case($string));
     }
 }
 
 if (!function_exists('hyphen2_')) {
-    function hyphen2_(string $string) : string
+    function hyphen2_(string $string): string
     {
         return str_replace('-', '_', $string);
     }
 }
 
 if (!function_exists('_2hyphen')) {
-    function _2hyphen(string $string) : string
+    function _2hyphen(string $string): string
     {
         return str_replace('_', '-', $string);
     }
 }
 if (!function_exists('regex_list')) {
-    function regex_list(array $array) : string
+    function regex_list(array $array): string
     {
         return REGEX_WORD_BOUNDARY . implode('|' . REGEX_WORD_BOUNDARY, $array);
     }

@@ -51,6 +51,24 @@ print_r(mysql_headers("test_table", $assoc = true));
 // returns: Array( [head1] => head1, [head2] => head2)
 ```
 
+### String
+#### `str_icontains($haystack, $needle)`
+Similar to [Str::contains()](https://laravel.com/docs/5.7/helpers#method-str-contains) but case _insensitive_.
+
+```php
+str_icontains('FOOBAR', 'foo');
+// returns: true
+
+str_icontains('foobar', 'foo');
+// returns: true
+
+str_icontains('foobar', 'FOO');
+// returns: true
+//
+str_icontains('foobar', 'test');
+// returns: false
+```
+
 ## Undocumented
 ### array
 * `array_delete_value()`
@@ -91,7 +109,6 @@ print_r(mysql_headers("test_table", $assoc = true));
 * `translated_attributes()`
 
 ### string
-* `str_icontains()`
 * `str_bytes()`
 * `str_replace_once()`
 * `title_case_wo_underscore()`
@@ -107,7 +124,7 @@ print_r(mysql_headers("test_table", $assoc = true));
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.9
+* Version 0.1.9.1
 
 ## Contact
 #### repat
