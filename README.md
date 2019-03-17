@@ -7,6 +7,7 @@
 Also have a look at
 * https://laravel.com/docs/5.7/helpers
 * http://calebporzio.com/11-awesome-laravel-helper-functions/
+* https://packagist.org/packages/illuminated/helper-functions
 
 Ideas what should go in here? Write a pull request or email!
 
@@ -77,6 +78,7 @@ str_icontains('foobar', 'test');
 ### date
 * `days_this_month()`
 * `days_this_year()`
+* `days_next_month()`
 * `days_left_in_month()`
 * `days_left_in_year()`
 * `timezone_list()`
@@ -88,11 +90,15 @@ str_icontains('foobar', 'test');
 ### html
 * `linkify()`
 * `embedded_video_url()`
+* `extract_inline_img()`
 
 ### misc
 * `human_filesize()`
 * `generate_password()`
 * `zenith()`
+* `permutations()`
+* `auto_cast()`
+* `operating_system()`
 
 ### networking
 * `http_status_code()`
@@ -124,7 +130,7 @@ str_icontains('foobar', 'test');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.9.2
+* Version 0.1.11
 
 ## Contact
 #### repat

@@ -12,6 +12,18 @@ if (!function_exists('days_this_month')) {
     }
 }
 
+if (!function_exists('days_next_month')) {
+    /**
+     * How many days are in next month (28/29/30/31)
+     *
+     * @return int
+     */
+    function days_next_month() : int
+    {
+        return cal_days_in_month(CAL_GREGORIAN, now()->addMonth()->month, now()->year);
+    }
+}
+
 if (!function_exists('days_this_year')) {
     /**
      * How many days are in current year, depending on leap year

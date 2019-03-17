@@ -126,3 +126,50 @@ if (!function_exists('permutations')) {
         }
     }
 }
+
+if (!function_exists('auto_cast')) {
+    /**
+     * Will automatically cast strings into float/int or bool values
+     *
+     * @param  mixed $value
+     * @return mixed
+     */
+    function auto_cast($value)
+    {
+        if (is_string($value)) {
+            if (is_numeric($value)) {
+                if (str_contains($value, '.')) {
+                    // float, real or double
+                    return floatval($value);
+                } else {
+                    return intval($value);
+                }
+            } elseif (strtolower($value) === 'true' || strtolower($value) === 'false') {
+                return boolval($value);
+            }
+        }
+        return $value;
+    }
+}
+
+if (!function_exists('operating_system')) {
+    /**
+     * Returns Operating System, see constants in `defines.php`
+     *
+     * @return string|null
+     */
+    function operating_system() : ?string
+    {
+        $uname = php_uname();
+        if (str_contains($uname, 'Darwin')) {
+            return MACOS;
+        } elseif (str_contains($uname, 'Linux')) {
+            return LINUX;
+        } elseif (str_icontains($uname, 'bsd')) {
+            return BSD;
+        } elseif (str_contains($uname, 'Windows')) {
+            return WINDOWS;
+        }
+        return null;
+    }
+}
