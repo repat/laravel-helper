@@ -1,15 +1,15 @@
 {
     "name": "repat/laravel-helper",
-    "description": "Some helper function for developing applications in laravel",
-    "keywords": ["laravel", "helper", "files", "array", "database", "strings"],
+    "description": "Some helper function for developing applications with Laravel 5.x",
+    "keywords": ["laravel", "helper", "files", "array", "database", "strings", "date"],
     "homepage": "http://repat.de",
     "license": "MIT",
-        "version" : "0.1.9.2",
+        "version" : "0.1.11",
     "authors": [
         {"name": "repat", "email": "repat@repat.de"}
     ],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.0",
         "illuminate/support": "5.*",
         "illuminate/database": "5.*",
         "ext-curl": "*"
@@ -31,6 +31,7 @@
     "minimum-stability" : "dev",
     "suggest": {
         "dimsav/laravel-translatable": "Required to use translated_attributes()",
-        "league/commonmark" : "Required to use markdown2html()"
+        "league/commonmark" : "Required to use markdown2html()",
+        "spatie/laravel-image-optimizer" : "Required to use ImageOptimizer in extract_inline_img()"
     }
 }
