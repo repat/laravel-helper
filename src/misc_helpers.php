@@ -173,3 +173,16 @@ if (!function_exists('operating_system')) {
         return null;
     }
 }
+
+if (!function_exists('toggle')) {
+    /**
+     * Returns opposite of input
+     *
+     * @param bool $switch
+     * @return bool
+     */
+    function toggle(bool $switch) : bool
+    {
+        return ($switch === false) ? true : false;
+    }
+}

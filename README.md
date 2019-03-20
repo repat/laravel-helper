@@ -99,6 +99,7 @@ str_icontains('foobar', 'test');
 * `permutations()`
 * `auto_cast()`
 * `operating_system()`
+* `toggle()`
 
 ### networking
 * `http_status_code()`
@@ -130,7 +131,7 @@ str_icontains('foobar', 'test');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.11
+* Version 0.1.12
 
 ## Contact
 #### repat
