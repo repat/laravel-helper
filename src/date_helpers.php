@@ -111,3 +111,10 @@ if (!function_exists('timezone_list')) {
         return $timezoneList;
     }
 }
+
+if (!function_exists('tomorrow')) {
+    function tomorrow() : \Carbon\Carbon
+    {
+        return \Carbon\Carbon::today()->addDay();
+    }
+}
