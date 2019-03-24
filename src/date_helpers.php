@@ -1,5 +1,19 @@
 <?php
 
+if (!function_exists('days_in_month')) {
+    /**
+     * How many days are in given month, defaults to current
+     *
+     * @return int
+     */
+    function days_in_month(?int $month = null, ?int $year = null) : int
+    {
+        $month = $month ?? now()->month;
+        $year = $year ?? now()->year;
+        return cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    }
+}
+
 if (!function_exists('days_this_month')) {
     /**
      * How many days are in current month (28/29/30/31)
@@ -8,7 +22,7 @@ if (!function_exists('days_this_month')) {
      */
     function days_this_month() : int
     {
-        return cal_days_in_month(CAL_GREGORIAN, now()->month, now()->year);
+        return days_in_month(now()->month, now()->year);
     }
 }
 
@@ -20,7 +34,7 @@ if (!function_exists('days_next_month')) {
      */
     function days_next_month() : int
     {
-        return cal_days_in_month(CAL_GREGORIAN, now()->addMonth()->month, now()->year);
+        return days_in_month(now()->addMonth()->month, now()->addMonth()->year);
     }
 }
 

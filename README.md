@@ -131,7 +131,7 @@ str_icontains('foobar', 'test');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.12.1
+* Version 0.1.13
 
 ## Contact
 #### repat
