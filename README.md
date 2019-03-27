@@ -76,12 +76,14 @@ str_icontains('foobar', 'test');
 * `contains_duplicates()`
 
 ### date
+* `days_in_month()`
 * `days_this_month()`
-* `days_this_year()`
 * `days_next_month()`
+* `days_this_year()`
 * `days_left_in_month()`
 * `days_left_in_year()`
 * `timezone_list()`
+* `tomorrow()`
 
 ### database
 * `print_db_session()`
@@ -91,6 +93,7 @@ str_icontains('foobar', 'test');
 * `linkify()`
 * `embedded_video_url()`
 * `extract_inline_img()`
+* `ul_li_unpack()`
 
 ### misc
 * `human_filesize()`
@@ -131,7 +134,7 @@ str_icontains('foobar', 'test');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.13
+* Version 0.1.14
 
 ## Contact
 #### repat

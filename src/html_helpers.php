@@ -140,3 +140,24 @@ if (!function_exists('extract_inline_img')) {
         return $text;
     }
 }
+
+if (!function_exists('ul_li_unpack')) {
+    /**
+     * Unpacks an array by recursively using `<ul>` and `<li>`
+     *
+     * @param array $array
+     * @return void
+     */
+    function ul_li_unpack(array $array)
+    {
+        echo '<ul>';
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                ul_li_unpack($value);
+            } else {
+                echo '<li>' . $key . ': '. $value . '</li>';
+            }
+        }
+        echo '</ul>';
+    }
+}
