@@ -1,2 +1,8 @@
-vendor/
+.DS_Store
 composer.lock
+doc/
+docs/
+html/
+latex/
+output/
+vendor/

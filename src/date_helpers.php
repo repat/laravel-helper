@@ -127,6 +127,11 @@ if (!function_exists('timezone_list')) {
 }
 
 if (!function_exists('tomorrow')) {
+    /**
+     * Carbon instance of tomorrow, similar to `today()`
+     *
+     * @return \Carbon\Carbon
+     */
     function tomorrow() : \Carbon\Carbon
     {
         return \Carbon\Carbon::today()->addDay();

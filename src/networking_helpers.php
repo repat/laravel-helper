@@ -67,3 +67,32 @@ if (!function_exists('scrub_url')) {
         return $url;
     }
 }
+
+if (!function_exists('parse_signed_request')) {
+    /**
+     * Parses a sha256 signed request JSON into array
+     * Source: https://developers.facebook.com/docs/apps/delete-data
+     *
+     * @param  string $signedRequest
+     * @param  string $secret
+     * @param  string $algo
+     * @return array
+     */
+    function parse_signed_request(string $signedRequest, string $secret, string $algo = 'sha256') : array
+    {
+        list($encodedSig, $payload) = explode('.', $signedRequest, 2);
+
+        // decode the data
+        $sig = base64_url_decode($encodedSig);
+        $data = json_decode(base64_url_decode($payload), JSON_OBJECT_AS_ARRAY);
+
+        // confirm the signature
+        $expectedSig = hash_hmac($algo, $payload, $secret, $raw = true);
+        if ($sig !== $expectedSig) {
+            // Bad Signed JSON signature
+            return null;
+        }
+
+        return $data;
+    }
+}

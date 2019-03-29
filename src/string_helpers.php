@@ -105,13 +105,12 @@ if (!function_exists('to_ascii')) {
     }
 }
 
-/*
-|--------------------------------------------------------------------------
-| Need Comments
-|--------------------------------------------------------------------------
- */
-
 if (!function_exists('title_case_wo_underscore')) {
+    /**
+     * `title_case` but with every underscore replaced by a space
+     * @param  string $string
+     * @return string
+     */
     function title_case_wo_underscore(string $string): string
     {
         return str_replace('_', ' ', title_case($string));
@@ -119,6 +118,12 @@ if (!function_exists('title_case_wo_underscore')) {
 }
 
 if (!function_exists('hyphen2_')) {
+    /**
+     * Replaces every hyphen("-") with underscore("_")
+     *
+     * @param  string $string
+     * @return string
+     */
     function hyphen2_(string $string): string
     {
         return str_replace('-', '_', $string);
@@ -126,14 +131,40 @@ if (!function_exists('hyphen2_')) {
 }
 
 if (!function_exists('_2hyphen')) {
+    /**
+     * Replaces every underscore("_") with hyphen("-")
+     *
+     * @param  string $string
+     * @return string
+     */
     function _2hyphen(string $string): string
     {
         return str_replace('_', '-', $string);
     }
 }
 if (!function_exists('regex_list')) {
+    /**
+     * Regex string pipe separated for an array
+     *
+     * @param  array  $array
+     * @return string
+     */
     function regex_list(array $array): string
     {
         return REGEX_WORD_BOUNDARY . implode('|' . REGEX_WORD_BOUNDARY, $array);
+    }
+}
+
+if (!function_exists('base64_url_decode')) {
+    /**
+     * Decodes a base64 encoded url
+     * Source: https://developers.facebook.com/docs/apps/delete-data
+     *
+     * @param  string $input
+     * @return string
+     */
+    function base64_url_decode(string $input) : string
+    {
+        return base64_decode(strtr($input, '-_', '+/'));
     }
 }

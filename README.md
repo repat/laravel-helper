@@ -108,11 +108,13 @@ str_icontains('foobar', 'test');
 * `http_status_code()`
 * `domain_slug()`
 * `scrub_url()`
+* `parse_signed_request()`
 
 ### object
 * `object2array()`
 * `morph_map()`
 * `morph_map_key()`
+* `cache_get_or_add()`
 
 ### optional packages
 * `markdown2html()`
@@ -122,10 +124,11 @@ str_icontains('foobar', 'test');
 * `str_bytes()`
 * `str_replace_once()`
 * `title_case_wo_underscore()`
-* `hyphen2_`
+* `hyphen2_()`
 * `_2hypen()`
 * `regex_list()`
 * `to_ascii()`
+* `base64_url_decode()`
 
 ## Contributors
 * https://github.com/bertholf
@@ -134,7 +137,7 @@ str_icontains('foobar', 'test');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.14
+* Version 0.1.15
 
 ## Contact
 #### repat

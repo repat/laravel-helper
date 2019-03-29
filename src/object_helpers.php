@@ -46,3 +46,19 @@ if (!function_exists('object2array')) {
         return $array;
     }
 }
+
+if (!function_exists('cache_get_or_add')) {
+    /**
+     * Transforms an object into an array
+     *
+     * @param  string $key
+     * @param  callable $function
+     * @return mixed
+     */
+    function cache_get_or_add(string $key, callable $function)
+    {
+        $result = Cache::get($key, $function);
+        Cache::add($result);
+        return $result;
+    }
+}
