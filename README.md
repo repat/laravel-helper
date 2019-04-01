@@ -129,6 +129,7 @@ str_icontains('foobar', 'test');
 * `regex_list()`
 * `to_ascii()`
 * `base64_url_decode()`
+* `lorem_ipsum()`
 
 ## Contributors
 * https://github.com/bertholf
@@ -137,7 +138,7 @@ str_icontains('foobar', 'test');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.15
+* Version 0.1.15.1
 
 ## Contact
 #### repat
