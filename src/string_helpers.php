@@ -108,10 +108,11 @@ if (!function_exists('to_ascii')) {
 if (!function_exists('title_case_wo_underscore')) {
     /**
      * `title_case` but with every underscore replaced by a space
+     * 
      * @param  string $string
      * @return string
      */
-    function title_case_wo_underscore(string $string): string
+    function title_case_wo_underscore(?string $string): string
     {
         return str_replace('_', ' ', title_case($string));
     }
