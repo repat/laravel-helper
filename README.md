@@ -72,6 +72,18 @@ print_r(mysql_headers("test_table", $assoc = true));
 // returns: Array( [head1] => head1, [head2] => head2)
 ```
 
+#### `table_headers($model)`
+Returns the database table headers, similar to `mysql_headers()`, but based on an object of a Eloquent Model.
+
+```php
+use App\Models\User;
+
+$user = User::first();
+
+print_r(table_headers($user));
+// returns: Array( 1 => id, 2 => name, ...)
+```
+
 ### Date
 #### `days_in_month($month, $year)`
 Returns amount of days in given month or year. Defaults to current month and year.
@@ -266,7 +278,7 @@ lorem_ipsum();
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.15.2
+* Version 0.1.16
 
 ## Contact
 #### repat

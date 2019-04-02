@@ -95,3 +95,16 @@ if (!function_exists('get_free_slug')) {
         return $slug;
     }
 }
+
+if (!function_exists('table_headers')) {
+    /**
+     * Gets table headers the Laravel way via the Schema builder
+     *
+     * @param  \Illuminate\Database\Eloquent\Model $model
+     * @return array
+     */
+    function table_headers(\Illuminate\Database\Eloquent\Model $model) : array
+    {
+        return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
+    }
+}
