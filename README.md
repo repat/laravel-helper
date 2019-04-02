@@ -84,6 +84,20 @@ print_r(table_headers($user));
 // returns: Array( 1 => id, 2 => name, ...)
 ```
 
+#### `print_db_session($table)`
+`print_r()` the session of current user, `$table` is optional and defaults to `sessions`.
+
+```php
+print_db_session();
+// returns:
+// Array
+// (
+//     [_token] => 7Au0aYkJVxQVA3xQBfdJwKNaWxUv0UVJKublCqMn
+//     [locale] => en
+//     ...
+// )
+```
+
 ### Date
 #### `days_in_month($month, $year)`
 Returns amount of days in given month or year. Defaults to current month and year.
@@ -169,7 +183,7 @@ tomorrow();
 ### Object
 
 #### `morph_map()`
-Returns the morphMap from ApplicationServiceProvider.
+Returns the morphMap from `AppServiceProvider` set with `Relation::morphMap()`.
 
 ```php
 morph_map();
@@ -180,7 +194,7 @@ morph_map();
 ```
 
 #### `morph_map_key($fqcn)`
-Reverse lookup for a class in the morphMap of the ApplicationServiceProvider.
+Reverse lookup for a class in the morphMap of the `AppServiceProvider` set with `Relation::morphMap()`.
 
 ```php
 use App\Models\User;
@@ -191,7 +205,7 @@ morph_map_key(User::class);
 
 ### Misc
 #### `togggle($switch)`
-If given true, returns false and vice-versa.
+If given `true`, returns `false` and vice-versa.
 
 ```php
 toggle(false);
@@ -199,6 +213,26 @@ toggle(false);
 
 toggle(true);
 // returns: false
+```
+
+#### `generate_password($size)`
+Returns a random password, `$size` is optional and defaults to `15`. Syntactic sugar for `str_random()`.
+
+```php
+generate_password();
+// returns: IZeJx3MeUdDhzE2
+```
+
+#### `auto_cast($value)`
+Returns the value with the right type so e.g. you can compare type safe with `===`.
+
+```php
+gettype(auto_cast('42'));
+// returns: integer
+gettype(auto_cast('42.0'));
+// returns: double
+gettype(auto_cast('true'));
+// returns: boolean
 ```
 
 ### String
@@ -214,9 +248,53 @@ str_icontains('foobar', 'foo');
 
 str_icontains('foobar', 'FOO');
 // returns: true
-//
+
 str_icontains('foobar', 'test');
 // returns: false
+```
+
+#### `to_ascii($string)`
+Removes all non [ASCII](https://en.wikipedia.org/wiki/ASCII) characters and returns the rest.
+
+```php
+to_ascii('René');
+// returns: Ren
+```
+
+#### `hyphen2_($string)`
+Replaces all hyphen ("-") characters with underscore ("\_")
+
+```php
+hyphen2_('foo-bar');
+// returns: foo_bar
+```
+
+#### `_2hypen($string)`
+Replaces all underscore ("\_") characters with hyphen ("-")
+
+```php
+hyphen2_('foo_bar');
+// returns: foo-bar
+```
+
+#### `str_replace_once($search, $replace, $string)`
+Same signature as `str_replace()`, but as name suggests, replaces only the first occurrence of `$search`.
+
+```php
+str_replace_once('foo', 'bar', 'foofoo');
+// returns: 'barfoo'
+```
+
+#### `title_case_wo_underscore($string)`
+[Title Case](https://en.wikipedia.org/wiki/Letter_case#Title_case) but without underscores.
+
+```php
+title_case_wo_underscore('foo_bar');
+// returns: Foo Bar
+
+// vs.
+// title_case('foo_bar')
+// returns: Foo_Bar
 ```
 
 #### `lorem_ipsum()`
@@ -230,7 +308,6 @@ lorem_ipsum();
 
 ## Undocumented
 ### database
-* `print_db_session()`
 * `get_free_slug()`
 
 ### html
@@ -241,10 +318,8 @@ lorem_ipsum();
 
 ### misc
 * `human_filesize()`
-* `generate_password()`
 * `zenith()`
 * `permutations()`
-* `auto_cast()`
 * `operating_system()`
 
 ### networking
@@ -263,12 +338,7 @@ lorem_ipsum();
 
 ### string
 * `str_bytes()`
-* `str_replace_once()`
-* `title_case_wo_underscore()`
-* `hyphen2_()`
-* `_2hypen()`
 * `regex_list()`
-* `to_ascii()`
 * `base64_url_decode()`
 
 ## Contributors
