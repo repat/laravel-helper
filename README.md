@@ -306,6 +306,21 @@ lorem_ipsum();
 // Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 ```
 
+#### `sluggify_domain($domain)`
+Returns a slug version of the domain by exchanging full stops with underscores. `str_slug()` does not work with subdomains, as it removes full stops completely.
+
+```php
+sluggify_domain('blog.fefe.de');
+// returns: blog_fefe_de
+str_slug('blog.fefe.de');
+// returns: blogfefede
+
+sluggify_domain('blogfefe.de');
+// returns: blogfefe_de
+str_slug('blogfefe.de');
+// returns: blogfefede // same as subdomain on fefe.de
+```
+
 ## Undocumented
 ### database
 * `get_free_slug()`
@@ -348,7 +363,7 @@ lorem_ipsum();
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.16
+* Version 0.1.17
 
 ## Contact
 #### repat

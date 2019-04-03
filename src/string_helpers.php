@@ -108,7 +108,7 @@ if (!function_exists('to_ascii')) {
 if (!function_exists('title_case_wo_underscore')) {
     /**
      * `title_case` but with every underscore replaced by a space
-     * 
+     *
      * @param  string $string
      * @return string
      */
@@ -179,5 +179,19 @@ if (!function_exists('lorem_ipsum')) {
     function lorem_ipsum() : string
     {
         return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+    }
+}
+
+if (!function_exists('sluggify_domain')) {
+    /**
+     * Creates a slug string especially for domains
+     * because str_slug doesn't work for subdomains (. => _)
+     *
+     * @param  string $domain
+     * @return string
+     */
+    function sluggify_domain(string $domain)
+    {
+        return str_replace('.', '_', strtolower($domain));
     }
 }
