@@ -379,7 +379,7 @@ str_remove('foobar42', 42);
 * `HTTP_1_0_VERBS`: [get, head, post]
 * `HTTP_1_1_VERBS`: [get, head, post, connect, delete, options, put, trace]
 * `HTTP_VERBS`: [get, head, post, connect, delete, options, put, trace, patch]
-* `HTTP_VERBS_LARAVEL`: [get, head, post, delete, options, put, patch]
+* `HTTP_VERBS_LARAVEL`: [all, get, head, post, delete, options, put, patch]
 * `REGEX_WORD_BOUNDARY`: \\b
 * `REGEX_IMG_BASE64_SRC`: Regular Expression used to find a base64 encoded image in HTML text
 * `REGEX_IMG_BASE64_REPLACE`: Regular Expression used to replace a base64 encoded image in HTML text
