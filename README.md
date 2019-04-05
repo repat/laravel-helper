@@ -235,6 +235,45 @@ gettype(auto_cast('true'));
 // returns: boolean
 ```
 
+### Networking
+#### `route_path($path)`
+Get the path to the Laravel routes folder, similar to `app_path()`, see [Helpers Documentation](https://laravel.com/docs/5.8/helpers). It will append `$path` but it's not mandatory.
+
+```php
+route_path();
+// returns: /var/www/htdocs/laravel/routes
+
+route_path('web.php');
+// returns: /var/www/htdocs/laravel/routes/web.php
+```
+
+#### `named_routes($path, $verb)`
+Returns array of all named routes in a routes file or `null` on error. It's possible to pass an HTTP verb/method defined in `HTTP_VERBS_LARAVEL` (see below).
+
+```php
+named_routes('/var/www/htdocs/laravel/routes/web.php');
+// returns: [
+// 'laravel.get'
+// 'laravel.post'
+// ]
+
+named_routes('/var/www/htdocs/laravel/routes/web.php', 'get');
+// returns: [
+// 'laravel.get'
+// ]
+```
+
+#### `scrub_url($url)`
+Removes the protocol, www and trailing slashes from a URL.
+
+```php
+scrub_url('https://www.repat.de/');
+// returns: 'repat.de'
+
+scrub_url('https://blog.fefe.de/?ts=a262bcdf');
+// returns: 'blog.fefe.de/?ts=a262bcdf'
+```
+
 ### String
 #### `str_icontains($haystack, $needle)`
 Similar to [Str::contains()](https://laravel.com/docs/5.7/helpers#method-str-contains) but case _insensitive_.
@@ -321,6 +360,35 @@ str_slug('blogfefe.de');
 // returns: blogfefede // same as subdomain on fefe.de
 ```
 
+#### `str_remove($string, $remove)`
+Removes given string(s), numbers or array of strings. Syntactic sugar for `str_replace($remove, '', $string)`.
+
+```php
+str_remove('foobar', 'bar');
+// returns: foo
+str_remove('foobar42', ['foo', 'bar']);
+// returns: 42
+str_remove('foobar42', 42);
+// returns: foobar
+```
+
+### Constants
+* `DAYS_PER_YEAR`: 365
+* `PARETO_HIGH`: 80
+* `PARETO_LOW`: 20
+* `HTTP_1_0_VERBS`: [get, head, post]
+* `HTTP_1_1_VERBS`: [get, head, post, connect, delete, options, put, trace]
+* `HTTP_VERBS`: [get, head, post, connect, delete, options, put, trace, patch]
+* `HTTP_VERBS_LARAVEL`: [get, head, post, delete, options, put, patch]
+* `REGEX_WORD_BOUNDARY`: \\b
+* `REGEX_IMG_BASE64_SRC`: Regular Expression used to find a base64 encoded image in HTML text
+* `REGEX_IMG_BASE64_REPLACE`: Regular Expression used to replace a base64 encoded image in HTML text
+* `REGEX_FIRST_RESULT_KEY`: 1
+* `MACOS`: macos
+* `WINDOWS`: windows
+* `LINUX`: linux
+* `BSD`: bsd
+
 ## Undocumented
 ### database
 * `get_free_slug()`
@@ -340,7 +408,6 @@ str_slug('blogfefe.de');
 ### networking
 * `http_status_code()`
 * `domain_slug()`
-* `scrub_url()`
 * `parse_signed_request()`
 
 ### object
@@ -363,7 +430,7 @@ str_slug('blogfefe.de');
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.17
+* Version 0.1.18
 
 ## Contact
 #### repat

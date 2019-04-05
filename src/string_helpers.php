@@ -195,3 +195,21 @@ if (!function_exists('sluggify_domain')) {
         return str_replace('.', '_', strtolower($domain));
     }
 }
+
+if (!function_exists('str_remove')) {
+    /**
+     * Removes given string(s), syntactic sugar for str_replace
+     * Returns null on error
+     *
+     * @param  string $string
+     * @param  int|float|string|array $remove
+     * @return null|string
+     */
+    function str_remove(string $string, $remove) : ?string
+    {
+        if (!(is_array($remove) || is_string($remove) || is_numeric($remove))) {
+            return null;
+        }
+        return str_replace($remove, '', $string);
+    }
+}

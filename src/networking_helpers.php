@@ -52,7 +52,7 @@ if (!function_exists('domain_slug')) {
 
 if (!function_exists('scrub_url')) {
     /**
-     * Removes protocols, subdomains and slashes from URL
+     * Removes protocols, www and trailing slashes from URL
      *
      * @param string $url
      * @return string
@@ -94,5 +94,51 @@ if (!function_exists('parse_signed_request')) {
         }
 
         return $data;
+    }
+}
+
+if (!function_exists('named_routes')) {
+    /**
+     * Returns array of all named routes in a routes file or null on error
+     *
+     * @param  string $filepath
+     * @param  string|null $verb
+     * @return null|array
+     */
+    function named_routes(string $filepath, ?string $verb = null) : ?array
+    {
+        if (!file_exists($filepath)) {
+            return null;
+        }
+
+        $content = file_get_contents($filepath);
+
+        $verb = strtolower($verb);
+        $regex = '/name\(\'([0-9a-z\.\_]*)\'\)';
+
+        if (!empty($verb) && !in_array($verb, HTTP_VERBS_LARAVEL)) {
+            return null;
+        } elseif (!empty($verb)) {
+            $regex .= '.*\-\>' . $verb . '\(/';
+        }
+
+        // filter with regex
+        $results = [];
+        $found = preg_match_all(str_finish($regex, '/'), $content, $results);
+
+        return array_key_exists(REGEX_FIRST_RESULT_KEY, $results) ? $results[REGEX_FIRST_RESULT_KEY] : [];
+    }
+}
+
+if (!function_exists('routes_path')) {
+    /**
+     * Get the path to the routes folder, similar to `app_path()` etc
+     *
+     * @param  string  $path
+     * @return string
+     */
+    function routes_path(string $path = '') : string
+    {
+        return base_path() . '/routes' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 }
