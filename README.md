@@ -204,7 +204,7 @@ morph_map_key(User::class);
 ```
 
 ### Misc
-#### `togggle($switch)`
+#### `toggle($switch)`
 If given `true`, returns `false` and vice-versa.
 
 ```php
