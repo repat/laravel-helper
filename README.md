@@ -98,6 +98,31 @@ print_db_session();
 // )
 ```
 
+#### `get_free_slug($toSlug, $field, $fqcn, $id, $pk)`
+Returns a unique slug for an Eloquent Model given the following parameters:
+
+* `$toSlug`: suggestion for the slug
+* `$field`: name of the database field, usually `slug`
+* `$fqcn`: Fully qualified class name of Eloquent Model
+* `$id`: id to exclude (e.g. it's own on update)
+* `$pk`: primary key of the database table, defaults to `id`
+
+Will append a number if `$toSlug` is already taken.
+
+```php
+use App\Model\User;
+
+$user = User::first();
+
+$user->id;
+// returns: 1
+$user->slug;
+// returns: foobar
+
+get_free_slug('foobar', 'slug', User::class, 1, 'id');
+// returns: foobar1
+```
+
 ### Date
 #### `days_in_month($month, $year)`
 Returns amount of days in given month or year. Defaults to current month and year.
@@ -203,6 +228,36 @@ morph_map_key(User::class);
 // returns: 'user'
 ```
 
+#### `object2array($object)`
+Array representation of an object, e.g. an Eloquent Model.
+
+```php
+use App\Models\User;
+
+object2array(User::first());
+// returns: [
+//      "casts" => [
+//        "someday_at" => "datetime",
+//       // ...
+//      ],
+//      "incrementing" => true,
+//      "exists" => true,
+//      "wasRecentlyCreated" => false,
+//      "timestamps" => true,
+// ]
+```
+
+#### `cache_get_or_add($key, $callable)`
+Returns Cache for given key or adds the return value from the callable to the cache and then returns it.
+
+```php
+use App\Models\Post;
+
+$posts = cache_get_or_add('posts', function() {
+    return Post::orderBy('created_at', 'desc')->get();
+});
+```
+
 ### Misc
 #### `toggle($switch)`
 If given `true`, returns `false` and vice-versa.
@@ -235,6 +290,85 @@ gettype(auto_cast('true'));
 // returns: boolean
 ```
 
+#### `human_filesize($size)`
+Returns a human readable form for given bytes. Goes up to [Yottabyte](https://en.wikipedia.org/wiki/Yottabyte).
+
+```php
+human_filesize(4223);
+// returns: 4.12kB
+```
+
+#### `permutations($array)`
+Returns a generator with all possible permutations of given array values.
+
+Based on [eddiewoulds port](https://stackoverflow.com/a/43307800/2517690) port of [python code](https://docs.python.org/2/library/itertools.html#itertools.permutations).
+
+```php
+$gen = permutations(['foo', 'bar', 'biz']);
+
+iterator_to_array($gen)
+// returns: [
+   //   [
+   //     "foo",
+   //     "bar",
+   //     "biz",
+   //   ],
+   //   [
+   //     "foo",
+   //     "biz",
+   //     "bar",
+   //   ],
+   //   [
+   //     "bar",
+   //     "foo",
+   //     "biz",
+   //   ],
+   //   [
+   //     "bar",
+   //     "biz",
+   //     "foo",
+   //   ],
+   //   [
+   //     "biz",
+   //     "foo",
+   //     "bar",
+   //   ],
+   //   [
+   //     "biz",
+   //     "bar",
+   //     "foo",
+   //   ],
+   // ]
+```
+
+#### `zenith($type)`
+Wrapper around magic numbers for the [Zenith](https://en.wikipedia.org/wiki/Zenith). The types can be:
+
+* `astronomical`: 108.0
+* `nautical`: 102.0
+* `civil`: 96.0
+* default: 90+50/60 (~90.83)
+
+```php
+zenith('civil');
+// returns: 96.0
+```
+
+#### `operating_system()`
+Returns on of the following constants (also see under constants):
+
+* `macos`
+* `windows`
+* `linux`
+* `bsd`
+
+```php
+operating_system();
+// returns: linux
+LINUX
+// returns: linux
+```
+
 ### Networking
 #### `route_path($path)`
 Get the path to the Laravel routes folder, similar to `app_path()`, see [Helpers Documentation](https://laravel.com/docs/5.8/helpers). It will append `$path` but it's not mandatory.
@@ -264,7 +398,7 @@ named_routes('/var/www/htdocs/laravel/routes/web.php', 'get');
 ```
 
 #### `scrub_url($url)`
-Removes the protocol, www and trailing slashes from a URL.
+Removes the protocol, www and trailing slashes from a URL. You can then e.g. test HTTP vs. HTTPS connections.
 
 ```php
 scrub_url('https://www.repat.de/');
@@ -272,6 +406,35 @@ scrub_url('https://www.repat.de/');
 
 scrub_url('https://blog.fefe.de/?ts=a262bcdf');
 // returns: 'blog.fefe.de/?ts=a262bcdf'
+```
+
+#### `http_status_code($url)`
+Returns just the status code by sending an empty request with [curl](https://curl.haxx.se/). Follows redirect so it will only return the last status code and not e.g. 301 Redirects. Requires `ext-curl`.
+
+```php
+http_status_code('httpstat.us/500');
+// returns: 500
+
+http_status_code('http://repat.de'); // with 301 redirect to https://repat.de
+// returns: 200
+```
+
+#### `parse_signed_request()`
+Parses a HMAC signed request. Copied from [Data Deletion Request Callback - Facebook for Developers](https://developers.facebook.com/docs/apps/delete-data).
+
+```php
+$requestString = null; // TODO
+parse_signed_request($requestString, env('FACEBOOK_CLIENT_SECRET'));
+```
+
+#### `domain_slug($domain)`
+Validates a domain and creates a slug. Does not work for subdomains, see `sluggify_domain()` instead. Returns `null` on a parsing error.
+
+```php
+domain_slug('blog.fefe.de')
+//returns: blogfefede
+domain_slug('blogfefe.de')
+//returns: blogfefede
 ```
 
 ### String
@@ -372,6 +535,96 @@ str_remove('foobar42', 42);
 // returns: foobar
 ```
 
+#### `str_bytes($string)`
+Returns the amount of bytes in a string.
+
+```php
+str_bytes('foobar');
+// returns: 6
+str_bytes('fooßar');
+// returns: 8
+```
+
+#### `regex_list($array)`
+Creates a string with regex for an OR separated list.
+
+```php
+regex_list(['foo', 'bar', '42'])
+// returns: \bfoo|\bbar|\b42
+```
+
+#### `base64_url_decode($url)`
+Decodes a base64-encoded URL. Copied from [Data Deletion Request Callback - Facebook for Developers](https://developers.facebook.com/docs/apps/delete-data)
+
+```php
+base64_url_decode('aHR0cHM6Ly9yZXBhdC5kZQ==');
+// returns: https://repat.de
+```
+
+### Optional Packages
+Optional packages suggested by this are required for these functions to work.
+
+#### `markdown2html($markdown)`
+Uses [league/commonmark](https://commonmark.thephpleague.com/) to transform Markdown into HTML.
+
+* `$ composer require league/commonmark`
+
+```php
+markdown2html('# Header');
+// returns: <h1>Header</h1>\n
+```
+
+#### `translated_attributes($fqcn)`
+Uses [dimsav/laravel-translatable](https://github.com/dimsav/laravel-translatable) and Reflection to get the `translatedAttributes` attribute of a Model.
+
+```php
+use App\Models\Product;
+
+translated_attributes(Product::class);
+// returns ['title', 'description'];
+```
+
+### HTML
+#### `linkify($string, $protocols = ['http', 'https', 'mail'], $attributes)`
+Returns the string with all URLs for given protocols made into links. Optionally, attributes for the [a tag](https://www.w3.org/TR/html4/struct/links.html) can be passed.
+
+```php
+linkify('https://google.com is a search machine');
+// returns: <a  href="https://google.com">google.com</a> is a search machine
+```
+
+#### `embedded_video_url($url)`
+Returns the embedded version of a given [YouTube](https://youtube.com) or [Vimeo](https://vimeo.com) URL.
+
+```php
+embedded_video_url('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+// returns: https://www.youtube.com/embed/dQw4w9WgXcQ
+
+embedded_video_url('https://vimeo.com/50491748');
+// returns: https://player.vimeo.com/video/50491748
+```
+
+#### `ul_li_unpack($array, $separator)`
+Unpacks an associated array into an [unordered list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul). Default separator is `:`.
+
+```php
+ul_li_unpack(['foo' => 'bar']);
+// returns: <ul><li>foo: bar</li></ul>
+
+ul_li_unpack(['foo' => 'bar'], '=>');
+// returns: <ul><li>foo=> bar</li></ul>
+```
+
+#### `extract_inline_img($text, $storagePath, $srcPath, $optimize)`
+Extracts an inline image from a text, saves it on the harddrive and puts in the filename with the [src](https://developer.mozilla.org/de/docs/Web/HTML/Element/img) attribute. Can use the [spatie/laravel-image-optimizer](https://github.com/spatie/laravel-image-optimizer) to optimize images after upload but it's disabled by default.
+
+* `$ composer require spatie/laravel-image-optimizer`
+
+```php
+extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/laravel/storage/foobar', 'public/images', true);
+// returns: <img src="public/fj3209fjew93.jpg">
+```
+
 ### Constants
 * `DAYS_PER_YEAR`: 365
 * `PARETO_HIGH`: 80
@@ -389,40 +642,6 @@ str_remove('foobar42', 42);
 * `LINUX`: linux
 * `BSD`: bsd
 
-## Undocumented
-### database
-* `get_free_slug()`
-
-### html
-* `linkify()`
-* `embedded_video_url()`
-* `extract_inline_img()`
-* `ul_li_unpack()`
-
-### misc
-* `human_filesize()`
-* `zenith()`
-* `permutations()`
-* `operating_system()`
-
-### networking
-* `http_status_code()`
-* `domain_slug()`
-* `parse_signed_request()`
-
-### object
-* `object2array()`
-* `cache_get_or_add()`
-
-### optional packages
-* `markdown2html()`
-* `translated_attributes()`
-
-### string
-* `str_bytes()`
-* `regex_list()`
-* `base64_url_decode()`
-
 ## Contributors
 * https://github.com/bertholf
 
@@ -430,7 +649,7 @@ str_remove('foobar42', 42);
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.18
+* Version 0.1.18.1
 
 ## Contact
 #### repat

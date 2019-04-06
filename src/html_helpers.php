@@ -33,7 +33,7 @@ if (!function_exists('linkify')) {
         }, $value);
 
         // Extract text links for each protocol
-        foreach ((array)$protocols as $protocol) {
+        foreach ($protocols as $protocol) {
             switch ($protocol) {
                 case 'http':
                 case 'https':   $value = preg_replace_callback('~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr) {
@@ -148,14 +148,14 @@ if (!function_exists('ul_li_unpack')) {
      * @param array $array
      * @return void
      */
-    function ul_li_unpack(array $array)
+    function ul_li_unpack(array $array, $separator = ':')
     {
         echo '<ul>';
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 ul_li_unpack($value);
             } else {
-                echo '<li>' . $key . ': '. $value . '</li>';
+                echo '<li>' . $key . trim($separator) . ' ' . $value . '</li>';
             }
         }
         echo '</ul>';

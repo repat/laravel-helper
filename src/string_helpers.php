@@ -159,6 +159,7 @@ if (!function_exists('regex_list')) {
 if (!function_exists('base64_url_decode')) {
     /**
      * Decodes a base64 encoded url
+     *
      * Source: https://developers.facebook.com/docs/apps/delete-data
      *
      * @param  string $input
