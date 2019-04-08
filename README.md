@@ -419,8 +419,8 @@ http_status_code('http://repat.de'); // with 301 redirect to https://repat.de
 // returns: 200
 ```
 
-#### `parse_signed_request()`
-Parses a HMAC signed request. Copied from [Data Deletion Request Callback - Facebook for Developers](https://developers.facebook.com/docs/apps/delete-data).
+#### `parse_signed_request($request, $clientSecret, $algo)`
+Parses a HMAC signed request. Copied from [Data Deletion Request Callback - Facebook for Developers](https://developers.facebook.com/docs/apps/delete-data). `$algo` defaults to `sha256`.
 
 ```php
 $requestString = null; // TODO
@@ -435,6 +435,23 @@ domain_slug('blog.fefe.de')
 //returns: blogfefede
 domain_slug('blogfefe.de')
 //returns: blogfefede
+```
+
+##### `current_route_name()`
+If the current route has a name, otherwise return `null`.
+
+```php
+// in routes/web.php
+// Route::name('dev.foo')->get('foo', 'Dev\TestController@foo');
+// Route::get('bar', 'Dev\TestController@bar');
+
+// in Dev/TestController@foo
+current_route_name();
+// returns: dev.foo
+
+// in Dev/TestController@foo
+current_route_name();
+// returns: null
 ```
 
 ### String
@@ -577,6 +594,8 @@ markdown2html('# Header');
 #### `translated_attributes($fqcn)`
 Uses [dimsav/laravel-translatable](https://github.com/dimsav/laravel-translatable) and Reflection to get the `translatedAttributes` attribute of a Model.
 
+* `$ composer require dimsav/laravel-translatable`
+
 ```php
 use App\Models\Product;
 
@@ -585,8 +604,8 @@ translated_attributes(Product::class);
 ```
 
 ### HTML
-#### `linkify($string, $protocols = ['http', 'https', 'mail'], $attributes)`
-Returns the string with all URLs for given protocols made into links. Optionally, attributes for the [a tag](https://www.w3.org/TR/html4/struct/links.html) can be passed.
+#### `linkify($string, $protocols, $attributes)`
+Returns the string with all URLs for given protocols made into links. Optionally, attributes for the [a tag](https://www.w3.org/TR/html4/struct/links.html) can be passed. `$protocols` defaults to an array of `'http', 'https', 'mail'`.
 
 ```php
 linkify('https://google.com is a search machine');
@@ -649,7 +668,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.18.1
+* Version 0.1.19
 
 ## Contact
 #### repat

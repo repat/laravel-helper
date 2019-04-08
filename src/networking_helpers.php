@@ -142,3 +142,15 @@ if (!function_exists('routes_path')) {
         return base_path() . '/routes' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 }
+
+if (!function_exists('current_route_name')) {
+    /**
+     * If the current Route has a name, otherwise return `null`
+     *
+     * @return string|null
+     */
+    function current_route_name() : ?string
+    {
+        return \Route::getCurrentRoute()->getName();
+    }
+}
