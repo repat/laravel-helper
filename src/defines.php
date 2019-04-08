@@ -30,6 +30,14 @@ define('PARETO_HIGH', 80);
  */
 define('PARETO_LOW', 20);
 
+/**
+ * MariaDB (or older MySQL) default String Length
+ * https://laravel-news.com/laravel-5-4-key-too-long-error
+ *
+ * @var int
+ */
+define('MARIADB_DEFAULT_STRLEN', 191);
+
 /*
 |--------------------------------------------------------------------------
 | Networking
