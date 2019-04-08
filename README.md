@@ -641,7 +641,7 @@ Extracts an inline image from a text, saves it on the harddrive and puts in the 
 
 ```php
 extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/laravel/storage/foobar', 'public/images', true);
-// returns: <img src="public/fj3209fjew93.jpg">
+// returns: <img src="public/images/fj3209fjew93.jpg">
 ```
 
 ### Constants
