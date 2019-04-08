@@ -648,6 +648,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * `DAYS_PER_YEAR`: 365
 * `PARETO_HIGH`: 80
 * `PARETO_LOW`: 20
+* `MARIADB_DEFAULT_STRLEN`: 191
 * `HTTP_1_0_VERBS`: [get, head, post]
 * `HTTP_1_1_VERBS`: [get, head, post, connect, delete, options, put, trace]
 * `HTTP_VERBS`: [get, head, post, connect, delete, options, put, trace, patch]
