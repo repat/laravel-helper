@@ -29,3 +29,24 @@ if (!function_exists('translated_attributes')) {
         return $reflectionObj->getValue(app()->make($fqcn));
     }
 }
+
+if (!function_exists('domain')) {
+    /**
+     * Gets domain without subdomain etc
+     *
+     * @param  string $url
+     * @return string|null
+     */
+    function domain(string $url) : ?string
+    {
+        $extract = new \LayerShifter\TLDExtract\Extract();
+        $result = $extract->parse($url);
+
+        // If domain parsing worked
+        if (!empty($result->getRegistrableDomain()) && $result->isValidDomain()) {
+            return $result->getRegistrableDomain();
+        }
+
+        return null;
+    }
+}

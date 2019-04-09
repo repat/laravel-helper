@@ -161,3 +161,43 @@ if (!function_exists('ul_li_unpack')) {
         echo '</ul>';
     }
 }
+
+if (!function_exists('link')) {
+    /**
+     * Links/Form with specific HTTP Verb (WIP, undocumented)
+     *
+     * @param  string $route
+     * @param  string $description
+     * @param  string $method
+     * @param  array $inputs
+     * @return string|null
+     */
+    function link(string $route, string $description, string $method, array $inputs = [], array $attributes = []) : ?string
+    {
+        $method = strtolower($method);
+
+        if (!in_array($method, HTTP_VERBS)) {
+            return null;
+        }
+
+        switch ($method) {
+            case 'get':
+                $tmp = trim(implode(' ', $attributes));
+                return '<a href="' . $route . '" ' . $tmp . '>' . $description . '</a>';#
+            break;
+            case 'delete':
+            case 'post':
+            case 'put':
+                $link = '<form action="' . $route . '" method="' . $method . '">\n';
+                foreach ($inputs as $id => $value) {
+                    $link .= '<input type="hidden" id="' . $id . '" name="' . $id . ' " value="' . $value . '">\n';
+                }
+                $link .= '<input type="submit" value="' . $description . '">\n';
+                $link .= '</form>\n';
+                return $link;
+            break;
+            default:
+            return null;
+        }
+    }
+}

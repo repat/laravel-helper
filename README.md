@@ -84,8 +84,8 @@ print_r(table_headers($user));
 // returns: Array( 1 => id, 2 => name, ...)
 ```
 
-#### `print_db_session($table)`
-`print_r()` the session of current user, `$table` is optional and defaults to `sessions`.
+#### `print_db_session($table = 'sessions')`
+`print_r()` the session of current user.
 
 ```php
 print_db_session();
@@ -124,7 +124,7 @@ get_free_slug('foobar', 'slug', User::class, 1, 'id');
 ```
 
 ### Date
-#### `days_in_month($month, $year)`
+#### `days_in_month($month = null, $year = null)`
 Returns amount of days in given month or year. Defaults to current month and year.
 
 ```php
@@ -270,8 +270,8 @@ toggle(true);
 // returns: false
 ```
 
-#### `generate_password($size)`
-Returns a random password, `$size` is optional and defaults to `15`. Syntactic sugar for `str_random()`.
+#### `generate_password($size = 15)`
+Returns a random password. Syntactic sugar for `str_random()`.
 
 ```php
 generate_password();
@@ -600,16 +600,29 @@ Uses [dimsav/laravel-translatable](https://github.com/dimsav/laravel-translatabl
 use App\Models\Product;
 
 translated_attributes(Product::class);
-// returns ['title', 'description'];
+// returns: ['title', 'description'];
+```
+
+#### `domain($url)`
+Uses [layershifter/tld-extract](https://github.com/layershifter/tld-extract) to return the domain only from a URL, removing protocol, subdomain and path.
+
+* `$ composer require layershifter/tld-extract`
+
+```php
+domain('https://repat.de/about?foo=bar');
+// returns: repat.de
 ```
 
 ### HTML
-#### `linkify($string, $protocols, $attributes)`
-Returns the string with all URLs for given protocols made into links. Optionally, attributes for the [a tag](https://www.w3.org/TR/html4/struct/links.html) can be passed. `$protocols` defaults to an array of `'http', 'https', 'mail'`.
+#### `linkify($string, $protocols = ['http', 'https', 'mail'], $attributes)`
+Returns the string with all URLs for given protocols made into links. Optionally, attributes for the [a tag](https://www.w3.org/TR/html4/struct/links.html) can be passed.
 
 ```php
-linkify('https://google.com is a search machine');
-// returns: <a  href="https://google.com">google.com</a> is a search machine
+linkify('https://google.com is a search engine');
+// returns: <a  href="https://google.com">google.com</a> is a search engine
+
+linkify('https://google.com is a search engine', ['https'], ['target' => '_blank']);
+// returns: <a target="_blank" href="https://google.com">google.com</a> is a search engine
 ```
 
 #### `embedded_video_url($url)`
@@ -669,7 +682,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.20
+* Version 0.1.21
 
 ## Contact
 #### repat

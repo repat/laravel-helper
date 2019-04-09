@@ -154,3 +154,27 @@ if (!function_exists('current_route_name')) {
         return \Route::getCurrentRoute()->getName();
     }
 }
+
+if (!function_exists('all_routes')) {
+    /**
+     * Array of all Routes and their properties
+     *
+     * @return array
+     */
+    function all_routes() : array
+    {
+        $allRoutes = [];
+        $routes = \Route::getRoutes();
+
+        foreach ($routes as $route) {
+            $allRoutes[] = [
+                'name' => $route->getName(),
+                'methods' => $route->methods(), // array
+                'uri' => $route->uri(),
+                'action' => $route->getActionName(),
+            ];
+        }
+
+        return $allRoutes;
+    }
+}
