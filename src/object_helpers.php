@@ -57,8 +57,8 @@ if (!function_exists('cache_get_or_add')) {
      */
     function cache_get_or_add(string $key, callable $function)
     {
-        $result = Cache::get($key, $function);
-        Cache::add($result);
+        $result = \Cache::get($key, $function);
+        \Cache::add($key, $result);
         return $result;
     }
 }
