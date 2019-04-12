@@ -592,6 +592,17 @@ base64_url_decode('aHR0cHM6Ly9yZXBhdC5kZQ==');
 // returns: https://repat.de
 ```
 
+#### `str_right($string, $until)`
+Substring from the right until given string, see also `str_left()`. Will return the input string if `$until` is not present.
+
+```php
+str_right('https://vimeo.com/165053513', '/');
+// returns: 165053513
+```
+
+#### `str_left($string, $before)`
+Syntactic sugar for [`str_before`](https://laravel.com/docs/5.8/helpers#method-str-before) to be consistent with `str_right()`.
+
 ### Optional Packages
 Optional packages suggested by this are required for these functions to work.
 
@@ -696,7 +707,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.23
+* Version 0.1.24
 
 ## Contact
 #### repat

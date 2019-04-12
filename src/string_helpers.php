@@ -214,3 +214,37 @@ if (!function_exists('str_remove')) {
         return str_replace($remove, '', $string);
     }
 }
+
+if (!function_exists('str_right')) {
+    /**
+     * String from the right until given string, see also `str_left()`
+     *
+     * @param  string $string
+     * @param  string $until
+     * @return string
+     */
+    function str_right(string $string, string $until) : string
+    {
+        $pos = strrpos($string, $until);
+
+        if ($pos !== false) {
+            return substr($string, strrpos($string, $until) + 1);
+        }
+
+        return $string;
+    }
+}
+
+if (!function_exists('str_left')) {
+    /**
+     * Syntactic sugar for `str_before()` to be consistent with `str_right()`
+     *
+     * @param  string $string
+     * @param  string $before
+     * @return string
+     */
+    function str_left(string $string, string $before) : string
+    {
+        return str_before($string, $before);
+    }
+}
