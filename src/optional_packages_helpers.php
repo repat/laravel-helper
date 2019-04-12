@@ -1,6 +1,7 @@
 <?php
 
-if (!function_exists('markdown2html')) {
+if (!function_exists('markdown2html')
+&& class_exists(\League\CommonMark\CommonMarkConverter::class)) {
     /**
      * Converts Markdown text into HTML code with `league/commonmark`
      *
@@ -30,7 +31,8 @@ if (!function_exists('translated_attributes')) {
     }
 }
 
-if (!function_exists('domain')) {
+if (!function_exists('domain') &&
+class_exists(\LayerShifter\TLDExtract\Extract::class)) {
     /**
      * Gets domain without subdomain etc
      *
