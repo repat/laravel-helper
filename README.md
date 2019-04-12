@@ -682,7 +682,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.22
+* Version 0.1.23
 
 ## Contact
 #### repat

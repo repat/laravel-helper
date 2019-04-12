@@ -137,3 +137,18 @@ if (!function_exists('tomorrow')) {
         return \Carbon\Carbon::today()->addDay();
     }
 }
+
+if (!function_exists('seconds2minutes')) {
+    function seconds2minutes(int $seconds) : string
+    {
+        $minutes = floor($seconds/MINUTE_IN_SECONDS);
+        $secondsleft = $seconds%MINUTE_IN_SECONDS;
+        if ($minutes < 10) {
+            $minutes = '0' . $minutes;
+        }
+        if ($secondsleft < 10) {
+            $secondsleft = '0' . $secondsleft;
+        }
+        return $minutes . ':' . $secondsleft;
+    }
+}

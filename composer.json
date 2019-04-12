@@ -4,7 +4,7 @@
     "keywords": ["laravel", "helper", "files", "array", "database", "strings", "date"],
     "homepage": "http://repat.de",
     "license": "MIT",
-    "version" : "0.1.22",
+    "version" : "0.1.23",
     "authors": [
         {"name": "repat", "email": "repat@repat.de"}
     ],
@@ -13,7 +13,8 @@
         "illuminate/support": "5.*",
         "illuminate/database": "5.*",
         "nesbot/carbon": "^1.26.3 || ^2.0",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "stevegrunwell/time-constants": "dev-master"
     },
     "autoload": {
         "files": [
