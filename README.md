@@ -205,6 +205,20 @@ tomorrow();
 //   }
 ```
 
+#### `seconds2minutes($seconds)`
+Returns `i:s` string with 60+ minutes instead of showing the hours as well.
+
+```php
+seconds2minutes(42);
+// returns: 00:42
+
+seconds2minutes(90);
+// returns: 01:30
+
+seconds2minutes(4223);
+// returns: 70:23
+```
+
 ### Object
 
 #### `morph_map()`
