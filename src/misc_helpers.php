@@ -186,3 +186,34 @@ if (!function_exists('toggle')) {
         return ($switch === false) ? true : false;
     }
 }
+
+if (!function_exists('wikipedia')) {
+    /**
+     * Link to Wikipedia, cleaning up Lemma
+     *
+     * @param  string $lemma
+     * @param  string $lang
+     * @return string
+     */
+    function wikipedia(string $lemma, string $lang = 'en', string $return = '') : string
+    {
+        // Validate language, 2-3 chars according to ISO
+        if (empty($lang) || strlen($lang) < 2 || strlen($lang) > 3) {
+            return $return;
+        }
+
+        // Clean lemma
+        $lemma = str_replace(' ', '_', $lemma);
+        $lemma = trim($lemma, '_');
+
+        $url = 'https://' . $lang . '.wikipedia.org/wiki/' . $lemma;
+        // Test URL (follow redirects)
+        $responseCode = http_status_code($url);
+
+        if ($responseCode !== HTTP_OK) {
+            return $return;
+        }
+
+        return $url;
+    }
+}

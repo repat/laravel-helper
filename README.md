@@ -383,6 +383,20 @@ LINUX
 // returns: linux
 ```
 
+#### `wikipedia($lemma, $lang = 'en', $return = '')`
+Link URL to wikipedia for a certain language
+
+```php
+wikipedia('Towel Day');
+// returns: https://en.wikipedia.org/wiki/Towel_Day
+
+wikipedia('Paris', 'fr', '#')
+// returns: https://fr.wikipedia.org/wiki/Paris
+
+wikipedia('Pariz', 'fr', '#')
+// returns: #
+```
+
 ### Networking
 #### `route_path($path)`
 Get the path to the Laravel routes folder, similar to `app_path()`, see [Helpers Documentation](https://laravel.com/docs/5.8/helpers). It will append `$path` but it's not mandatory.
@@ -706,7 +720,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.26
+* Version 0.1.27
 
 ## Contact
 #### repat
