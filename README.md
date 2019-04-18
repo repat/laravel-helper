@@ -683,7 +683,6 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 ```
 
 ### Constants
-* `DAYS_PER_YEAR`: 365
 * `PARETO_HIGH`: 80
 * `PARETO_LOW`: 20
 * `MARIADB_DEFAULT_STRLEN`: 191
@@ -707,7 +706,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.25
+* Version 0.1.26
 
 ## Contact
 #### repat
