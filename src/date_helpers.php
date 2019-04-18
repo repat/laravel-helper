@@ -47,7 +47,7 @@ if (!function_exists('days_this_year')) {
     function days_this_year() : int
     {
         // leap year
-        return date('L') == 1 ? DAYS_PER_YEAR+1 : DAYS_PER_YEAR;
+        return date('L') == 1 ? DAYS_PER_LEAP_YEAR : DAYS_PER_YEAR;
     }
 }
 

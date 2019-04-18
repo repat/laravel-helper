@@ -162,7 +162,7 @@ if (!function_exists('ul_li_unpack')) {
     }
 }
 
-if (!function_exists('link')) {
+if (!function_exists('html_link')) {
     /**
      * Links/Form with specific HTTP Verb (WIP, undocumented)
      *
@@ -172,7 +172,7 @@ if (!function_exists('link')) {
      * @param  array $inputs
      * @return string|null
      */
-    function link(string $route, string $description, string $method, array $inputs = [], array $attributes = []) : ?string
+    function html_link(string $route, string $description, string $method = 'get', array $inputs = [], array $attributes = []) : ?string
     {
         $method = strtolower($method);
 
@@ -188,12 +188,12 @@ if (!function_exists('link')) {
             case 'delete':
             case 'post':
             case 'put':
-                $link = '<form action="' . $route . '" method="' . $method . '">\n';
+                $link = '<form action="' . $route . '" method="' . $method . '">' . PHP_EOL;
                 foreach ($inputs as $id => $value) {
-                    $link .= '<input type="hidden" id="' . $id . '" name="' . $id . ' " value="' . $value . '">\n';
+                    $link .= '<input type="hidden" id="' . $id . '" name="' . $id . ' " value="' . $value . '">' . PHP_EOL;
                 }
-                $link .= '<input type="submit" value="' . $description . '">\n';
-                $link .= '</form>\n';
+                $link .= '<input style="background:none!important;border:none;padding:0!important;" type="submit" value="' . $description . '">' . PHP_EOL;
+                $link .= '</form>' . PHP_EOL;
                 return $link;
             break;
             default:
