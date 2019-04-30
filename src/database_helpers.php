@@ -35,7 +35,7 @@ if (!function_exists('print_db_session')) {
      * @param  string $table
      * @return void
      */
-    function print_db_session(string $table = 'sessions')
+    function print_db_session(string $table = 'sessions') : void
     {
         print_r(
             unserialize(

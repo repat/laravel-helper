@@ -248,3 +248,15 @@ if (!function_exists('str_left')) {
         return str_before($string, $before);
     }
 }
+
+if (!function_exists('uuid')) {
+    /**
+     * Syntactic sugar `\Illuminate\Support\Str::uuid()->toString()`
+     *
+     * @return string
+     */
+    function uuid() : string
+    {
+        return \Illuminate\Support\Str::uuid()->toString();
+    }
+}
