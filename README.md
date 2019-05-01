@@ -272,6 +272,23 @@ $posts = cache_get_or_add('posts', function() {
 });
 ```
 
+#### `filepath2fqcn($filepath, $prefix = '')`
+Will turn a filepath into a Fully Qualified Class Name.
+
+```php
+filepath2fqcn('/Users/john/code/app/Models/User.php', '/Users/john/code/');
+// returns: App\Models\User
+
+filepath2fqcn('/Users/john/code/app/Models/User.php', '/Users/john/code');
+// returns: App\Models\User
+
+filepath2fqcn('app/Models/User.php');
+// returns: App\Models\User
+
+filepath2fqcn('/Users/john/code/app/Models/User.php');
+// returns: \Users\john\code\app\Models\User
+```
+
 ### Misc
 #### `toggle($switch)`
 If given `true`, returns `false` and vice-versa.
@@ -712,6 +729,8 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * `WINDOWS`: windows
 * `LINUX`: linux
 * `BSD`: bsd
+* `WEAK_CIPHERS` : [
+TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA, TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_AES_128_CBC_SHA, SSL_DHE_RSA_WITH_AES_256_CBC_SHA, SSL_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA, SSL_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA]
 
 ## Contributors
 * https://github.com/bertholf
@@ -720,7 +739,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.28
+* Version 0.1.29
 
 ## Contact
 #### repat

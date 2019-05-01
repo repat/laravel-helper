@@ -62,3 +62,16 @@ if (!function_exists('cache_get_or_add')) {
         return $result;
     }
 }
+
+if (!function_exists('filepath2fqcn')) {
+    /**
+     * Filepath to Fully Qualified Class Name
+     *
+     * @param  string $filepath
+     * @return string FQCN of $filepath
+     */
+    function filepath2fqcn(string $filepath, string $prefix = '') : string
+    {
+        return ucfirst(str_replace([str_finish($prefix, '/'), '/', '.php'], ['', '\\', ''], $filepath));
+    }
+}

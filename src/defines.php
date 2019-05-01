@@ -68,6 +68,29 @@ if (! defined('HTTP_VERBS_LARAVEL')) {
      */
     define('HTTP_VERBS_LARAVEL', array_merge(HTTP_1_0_VERBS, ['all', 'delete', 'options', 'put']));
 }
+
+if (! defined('WEAK_CIPHERS')) {
+    /**
+     * Ciphers that should not be used
+     * @var array
+     */
+    define('WEAK_CIPHERS', [
+        'TLS_DHE_RSA_WITH_AES_256_GCM_SHA384',
+        'TLS_DHE_RSA_WITH_AES_256_CBC_SHA256',
+        'TLS_DHE_RSA_WITH_AES_256_CBC_SHA',
+        'TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA',
+        'TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA',
+        'TLS_DHE_RSA_WITH_AES_128_CBC_SHA256',
+        'TLS_DHE_RSA_WITH_AES_128_CBC_SHA',
+        'TLS_DHE_RSA_WITH_AES_128_GCM_SHA256',
+        'TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA',
+        'SSL_DHE_RSA_WITH_AES_128_CBC_SHA',
+        'SSL_DHE_RSA_WITH_AES_256_CBC_SHA',
+        'SSL_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA',
+        'SSL_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA',
+        'SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA'
+    ]);
+}
 /*
 |--------------------------------------------------------------------------
 | Regex
