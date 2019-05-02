@@ -717,6 +717,8 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * `PARETO_HIGH`: 80
 * `PARETO_LOW`: 20
 * `MARIADB_DEFAULT_STRLEN`: 191
+* `MULTIPLE_TRANS`: 2
+* `ONE_HUNDRED_PERCENT`: 100
 * `HTTP_1_0_VERBS`: [get, head, post]
 * `HTTP_1_1_VERBS`: [get, head, post, connect, delete, options, put, trace]
 * `HTTP_VERBS`: [get, head, post, connect, delete, options, put, trace, patch]
@@ -739,7 +741,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.29
+* Version 0.1.30
 
 ## Contact
 #### repat

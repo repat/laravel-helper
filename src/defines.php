@@ -31,6 +31,24 @@ if (! defined('MARIADB_DEFAULT_STRLEN')) {
     define('MARIADB_DEFAULT_STRLEN', 191);
 }
 
+if (! defined('MULTIPLE_TRANS')) {
+    /**
+     * Minimum for trans_choice() to trigger the plural version
+     *
+     * @var int
+     */
+    define('MULTIPLE_TRANS', 2); // at least 2 is multiple
+}
+
+if (! defined('ONE_HUNDRED_PERCENT')) {
+    /**
+     * To avoid 100 being a Magic Number
+     *
+     * @var int
+     */
+    define('ONE_HUNDRED_PERCENT', 100);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Networking
