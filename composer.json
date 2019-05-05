@@ -2,7 +2,7 @@
     "name": "repat/laravel-helper",
     "description": "Some helper function for developing applications with Laravel 5.x",
     "keywords": ["laravel", "helper", "files", "array", "database", "strings", "date"],
-    "homepage": "http://repat.de",
+    "homepage": "https://repat.de",
     "license": "MIT",
     "version" : "0.1.30",
     "authors": [
