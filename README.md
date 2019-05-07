@@ -60,6 +60,32 @@ contains_duplicates([1, 2]);
 // returns: false
 ```
 
+#### `array_change_keys($array, $keys)`
+Changes the keys recursively for an associative array. The second parameter is an array with the old key (of `$array`) as the key and the new key as the value.
+
+```php
+$array = [
+        'bar' => 'foo',
+        'sub' => [
+            'some' => 'thing',
+        ],
+];
+
+$keys = [
+    'bar' => 'biz', // change all 'bar' keys to 'biz' keys
+    'some' => 'any',
+];
+
+array_change_keys($array, $keys);
+// returns:[
+//         'biz' => 'foo',
+//         'sub' => [
+//             'any' => 'thing',
+//         ],
+// ];
+
+```
+
 ### Database
 #### `mysql_headers($table, $assoc = false)`
 Returns an array of MySQL headers/columns or empty array in case of an error. If the second parameter is set `true` (default is `false`) it returns an associative array.
@@ -741,7 +767,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.30
+* Version 0.1.31
 
 ## Contact
 #### repat

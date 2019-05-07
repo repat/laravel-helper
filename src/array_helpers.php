@@ -68,3 +68,24 @@ if (!function_exists('contains_duplicates')) {
         return (count(array_unique($array)) < count($array));
     }
 }
+
+if (!function_exists('array_change_keys')) {
+    /**
+     * Exchanges keys in given array
+     *
+     * Source: https://fellowtuts.com/php/change-array-key-without-changing-order/
+     *
+     * @param  array $array
+     * @param  array $keys
+     * @return array
+     */
+    function array_change_keys(array $array, array $keys) : array
+    {
+        $newArr = [];
+        foreach ($array as $previousKey => $valueOrNextArray) {
+            $key = array_key_exists($previousKey, $keys) ? $keys[$previousKey] : $previousKey;
+            $newArr[$key] = is_array($valueOrNextArray) ? array_change_key($valueOrNextArray, $keys) : $valueOrNextArray;
+        }
+        return $newArr;
+    }
+}
