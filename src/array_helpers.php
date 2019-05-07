@@ -102,8 +102,8 @@ if (!function_exists('array_key_replace')) {
      */
     function array_key_replace(array $array, $oldKey, $newKey) : array
     {
-        $array[$newkey] = $array[$oldkey];
-        unset($array[$oldkey]);
+        $array[$newKey] = $array[$oldKey];
+        unset($array[$oldKey]);
         return $array;
     }
 }
