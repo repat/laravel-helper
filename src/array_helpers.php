@@ -84,7 +84,7 @@ if (!function_exists('array_change_keys')) {
         $newArr = [];
         foreach ($array as $previousKey => $valueOrNextArray) {
             $key = array_key_exists($previousKey, $keys) ? $keys[$previousKey] : $previousKey;
-            $newArr[$key] = is_array($valueOrNextArray) ? array_change_key($valueOrNextArray, $keys) : $valueOrNextArray;
+            $newArr[$key] = is_array($valueOrNextArray) ? array_change_keys($valueOrNextArray, $keys) : $valueOrNextArray;
         }
         return $newArr;
     }
