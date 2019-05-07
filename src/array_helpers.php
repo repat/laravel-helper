@@ -89,3 +89,21 @@ if (!function_exists('array_change_keys')) {
         return $newArr;
     }
 }
+
+if (!function_exists('array_key_replace')) {
+    /**
+     * Changes old key to new key.
+     * Only for one dimensional arrays.
+     *
+     * @param  array $array
+     * @param  mixed $oldKey
+     * @param  mixed $newKey
+     * @return array
+     */
+    function array_key_replace(array $array, $oldKey, $newKey) : array
+    {
+        $array[$newkey] = $array[$oldkey];
+        unset($array[$oldkey]);
+        return $array;
+    }
+}

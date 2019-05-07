@@ -86,6 +86,14 @@ array_change_keys($array, $keys);
 
 ```
 
+#### `array_key_replace($array, $oldKey, $newKey)`
+Similar to `array_change_keys()` but it only works for one-dimensional arrays.
+
+```php
+array_key_replace(['bar' => 'foo'], 'bar', 'bizz');
+// returns : ['bizz' => 'foo']
+```
+
 ### Database
 #### `mysql_headers($table, $assoc = false)`
 Returns an array of MySQL headers/columns or empty array in case of an error. If the second parameter is set `true` (default is `false`) it returns an associative array.
