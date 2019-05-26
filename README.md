@@ -239,6 +239,16 @@ tomorrow();
 //   }
 ```
 
+#### `yesterday()`
+Similar to `today()` or `now()`, this function returns a Carbon instance for yesterday.
+
+```php
+yesterday();
+// returns: Carbon\Carbon @1554156000 {#5618
+//     date: 2019-04-19 00:00:00.0 Europe/Amsterdam (+02:00),
+//   }
+```
+
 #### `seconds2minutes($seconds)`
 Returns `i:s` string with 60+ minutes instead of showing the hours as well.
 
@@ -251,6 +261,18 @@ seconds2minutes(90);
 
 seconds2minutes(4223);
 // returns: 70:23
+```
+
+
+#### `diff_in_days($start, $end)`
+Uses Carbons `diffInDays()` and `parse()` methods to return the difference in days.
+
+```php
+diff_in_days('2018-04-19', '2018-04-21');
+// returns: 2
+
+diff_in_days(today(), yesterday());
+// returns: 1
 ```
 
 ### Object
@@ -775,7 +797,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.31
+* Version 0.1.32
 
 ## Contact
 #### repat

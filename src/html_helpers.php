@@ -188,7 +188,8 @@ if (!function_exists('html_link')) {
             case 'delete':
             case 'post':
             case 'put':
-                $link = '<form action="' . $route . '" method="' . $method . '">' . PHP_EOL;
+                $link = '<form action="' . $route . '" method="POST">' . PHP_EOL;
+                $link .= '<input type="hidden" id="method" name="method" value="' . strtoupper($method) . '">' . PHP_EOL;
                 foreach ($inputs as $id => $value) {
                     $link .= '<input type="hidden" id="' . $id . '" name="' . $id . ' " value="' . $value . '">' . PHP_EOL;
                 }

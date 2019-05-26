@@ -138,7 +138,25 @@ if (!function_exists('tomorrow')) {
     }
 }
 
+if (!function_exists('yesterday')) {
+    /**
+     * Carbon instance of yesterday, similar to `today()`
+     *
+     * @return \Carbon\Carbon
+     */
+    function yesterday() : \Carbon\Carbon
+    {
+        return \Carbon\Carbon::today()->subDay();
+    }
+}
+
 if (!function_exists('seconds2minutes')) {
+    /**
+     * Displays amount of given seconds in minutes like m:s
+     *
+     * @param int $seconds
+     * @return string
+     */
     function seconds2minutes(int $seconds) : string
     {
         $minutes = floor($seconds/MINUTE_IN_SECONDS);
@@ -150,5 +168,45 @@ if (!function_exists('seconds2minutes')) {
             $secondsleft = '0' . $secondsleft;
         }
         return $minutes . ':' . $secondsleft;
+    }
+}
+
+if (!function_exists('diff_in_days')) {
+    /**
+     * Difference in days
+     *
+     * @param  mixed $start
+     * @param  mixed $end
+     * @return null|int
+     */
+    function diff_in_days($start, $end) : ?int
+    {
+        $carbonFqcns = ['Carbon\Carbon', 'Illuminate\Support\Carbon'];
+
+        if (is_object($start) && in_array(get_class($end), $carbonFqcns)) {
+            $startC = $start;
+        } elseif (is_string($start)) {
+            try {
+                $startC = \Carbon\Carbon::parse($start);
+            } catch (\Exception $e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        if (is_object($end) && in_array(get_class($end), $carbonFqcns)) {
+            $endC = $end;
+        } elseif (is_string($end)) {
+            try {
+                $endC = \Carbon\Carbon::parse($end);
+            } catch (\Exception $e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return $startC->diffInDays($endC);
     }
 }
