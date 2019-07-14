@@ -72,6 +72,9 @@ if (!function_exists('filepath2fqcn')) {
      */
     function filepath2fqcn(string $filepath, string $prefix = '') : string
     {
-        return ucfirst(str_replace([str_finish($prefix, '/'), '/', '.php'], ['', '\\', ''], $filepath));
+        if (!empty($prefix)) {
+            $prefix = str_finish($prefix, '/');
+        }
+        return ucfirst(str_replace([$prefix, '/', '.php'], ['', '\\', ''], $filepath));
     }
 }
