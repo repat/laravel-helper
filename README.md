@@ -769,6 +769,20 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 // returns: <img src="public/images/fj3209fjew93.jpg">
 ```
 
+#### `contrast_color($bgColor)`
+Uses the Luminosity Contrast algorithm to determine if white or black
+would be the best contrast color for a given hex background color.
+
+Source: [tomloprod on stackoverflow](https://stackoverflow.com/a/42921358/2517690)
+
+```php
+contrast_color('b9b6b6');
+// returns: #000000
+
+contrast_color('#496379');
+// returns: #ffffff
+```
+
 ### Constants
 * `PARETO_HIGH`: 80
 * `PARETO_LOW`: 20
@@ -787,6 +801,11 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * `WINDOWS`: windows
 * `LINUX`: linux
 * `BSD`: bsd
+* `HEX_RED`: #ff0000
+* `HEX_GREEN`: #00ff00
+* `HEX_BLUE`: #0000ff
+* `HEX_WHITE`: #ffffff
+* `HEX_BLACK`: #000000
 * `WEAK_CIPHERS` : [
 TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA, TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_AES_128_CBC_SHA, SSL_DHE_RSA_WITH_AES_256_CBC_SHA, SSL_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA, SSL_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA]
 
@@ -797,7 +816,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.33
+* Version 0.1.34
 
 ## Contact
 #### repat

@@ -202,3 +202,53 @@ if (!function_exists('html_link')) {
         }
     }
 }
+
+if (!function_exists('contrast_color')) {
+    /**
+     * Determines whether or not black or white would be the best
+     * contrast color for a background color. Based on Luminosity Contrast Algo:
+     * https://stackoverflow.com/a/42921358/2517690
+     *
+     * @param  string $bgColor
+     * @return string
+     */
+    function contrast_color(string $bgColor) : string
+    {
+        $bgColor = str_start($bgColor, '#');
+
+        // hexColor RGB
+        $r1 = hexdec(substr($bgColor, 1, 2));
+        $g1 = hexdec(substr($bgColor, 3, 2));
+        $b1 = hexdec(substr($bgColor, 5, 2));
+
+        // Black RGB
+        $blackColor = '#000000';
+        $r2BlackColor = hexdec(substr($blackColor, 1, 2));
+        $g2BlackColor = hexdec(substr($blackColor, 3, 2));
+        $b2BlackColor = hexdec(substr($blackColor, 5, 2));
+
+        // Calc contrast ratio
+        $L1 = 0.2126 * pow($r1 / 255, 2.2) +
+               0.7152 * pow($g1 / 255, 2.2) +
+               0.0722 * pow($b1 / 255, 2.2);
+
+        $L2 = 0.2126 * pow($r2BlackColor / 255, 2.2) +
+              0.7152 * pow($g2BlackColor / 255, 2.2) +
+              0.0722 * pow($b2BlackColor / 255, 2.2);
+
+        $contrastRatio = 0;
+        if ($L1 > $L2) {
+            $contrastRatio = (int)(($L1 + 0.05) / ($L2 + 0.05));
+        } else {
+            $contrastRatio = (int)(($L2 + 0.05) / ($L1 + 0.05));
+        }
+
+        // If contrast is more than 5, return black color
+        if ($contrastRatio > 5) {
+            return HEX_BLACK;
+        } else {
+            // if not, return white color.
+            return HEX_WHITE;
+        }
+    }
+}

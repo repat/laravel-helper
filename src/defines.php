@@ -183,3 +183,49 @@ if (! defined('BSD')) {
      */
     define('BSD', 'bsd');
 }
+
+/*
+|--------------------------------------------------------------------------
+| Hex Colors
+|--------------------------------------------------------------------------
+*/
+
+if (! defined('HEX_RED')) {
+    /**
+     * Hex Color for red
+     * @var string
+     */
+    define('HEX_RED', '#ff0000');
+}
+
+if (! defined('HEX_GREEN')) {
+    /**
+     * Hex Color for red
+     * @var string
+     */
+    define('HEX_GREEN', '#00ff00');
+}
+
+if (! defined('HEX_BLUE')) {
+    /**
+     * Hex Color for red
+     * @var string
+     */
+    define('HEX_BLUE', '#0000ff');
+}
+
+if (! defined('HEX_WHITE')) {
+    /**
+     * Hex Color for red
+     * @var string
+     */
+    define('HEX_WHITE', '#ffffff');
+}
+
+if (! defined('HEX_BLACK')) {
+    /**
+     * Hex Color for red
+     * @var string
+     */
+    define('HEX_BLACK', '#000000');
+}
