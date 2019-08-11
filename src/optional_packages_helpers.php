@@ -18,7 +18,7 @@ if (!function_exists('markdown2html')
 if (!function_exists('translated_attributes')) {
     /**
      * Uses Reflection to get the translated attributes of
-     * `dimsav/laravel-translatable` Models
+     * `astrotomic/laravel-translatable` Models
      *
      * @param string $fqcn
      * @return array

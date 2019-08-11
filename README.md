@@ -704,9 +704,9 @@ markdown2html('# Header');
 ```
 
 #### `translated_attributes($fqcn)`
-Uses [dimsav/laravel-translatable](https://github.com/dimsav/laravel-translatable) and Reflection to get the `translatedAttributes` attribute of a Model.
+Uses [astrotomic/laravel-translatable](https://github.com/astrotomic/laravel-translatable) and Reflection to get the `translatedAttributes` attribute of a Model.
 
-* `$ composer require dimsav/laravel-translatable`
+* `$ composer require astrotomic/laravel-translatable`
 
 ```php
 use App\Models\Product;
@@ -816,7 +816,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.34
+* Version 0.1.35
 
 ## Contact
 #### repat

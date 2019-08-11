@@ -4,7 +4,7 @@
     "keywords": ["laravel", "helper", "files", "array", "database", "strings", "date"],
     "homepage": "https://repat.de",
     "license": "MIT",
-    "version" : "0.1.34",
+    "version" : "0.1.35",
     "authors": [
         {"name": "repat", "email": "repat@repat.de"}
     ],
@@ -34,7 +34,7 @@
     },
     "minimum-stability" : "dev",
     "suggest": {
-        "dimsav/laravel-translatable": "Required to use translated_attributes()",
+        "astrotomic/laravel-translatable": "Required to use translated_attributes()",
         "league/commonmark" : "Required to use markdown2html()",
         "spatie/laravel-image-optimizer" : "Required to use ImageOptimizer in extract_inline_img()",
         "layershifter/tld-extract" : "Required to parse domains with domain()"
