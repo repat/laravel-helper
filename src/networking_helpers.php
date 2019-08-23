@@ -178,3 +178,18 @@ if (!function_exists('all_routes')) {
         return $allRoutes;
     }
 }
+
+if (!function_exists('route_exists')) {
+    /**
+     * Wrapper around all_routes()
+     *
+     * @param  string $routeName
+     * @return bool
+     */
+    function route_exists(string $routeName) : bool
+    {
+        return in_array($routeName, array_map(function ($item) {
+            return $item['name'];
+        }, all_routes()));
+    }
+}

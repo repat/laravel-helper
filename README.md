@@ -555,6 +555,35 @@ current_route_name();
 // returns: null
 ```
 
+##### `all_routes()`
+Returns an array of all routes like so:
+
+```php
+all_routes();
+// returns:
+//      "name" => 'route.test', // could be null
+//      "methods" => [
+//          "GET",
+//          "HEAD",
+//      ],
+//      "uri" => "test",
+//      "action" => "\App\Http\Controllers\TestController@test",
+```
+
+##### `route_exists($namedRoute)`
+Checks if the given route is a named route in any routes file.
+
+```php
+route_exists('route.test');
+
+// returns: true
+
+route_exists('route.foobar')
+
+// returns: false
+```
+
+
 ### String
 #### `str_icontains($haystack, $needle)`
 Similar to [Str::contains()](https://laravel.com/docs/5.7/helpers#method-str-contains) but case _insensitive_.
@@ -816,7 +845,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.35
+* Version 0.1.36
 
 ## Contact
 #### repat
