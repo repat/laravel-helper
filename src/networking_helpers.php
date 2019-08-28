@@ -193,3 +193,39 @@ if (!function_exists('route_exists')) {
         }, all_routes()));
     }
 }
+
+if (!function_exists('is_public_ip')) {
+    /**
+     * Is it a public IPv4 or IPv6 address (not private, not reserved)
+     *
+     * @param $ip
+     * @return bool
+     */
+    function is_public_ip(string $ip) : bool
+    {
+        return filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE |  FILTER_FLAG_NO_RES_RANGE)
+                || filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE |  FILTER_FLAG_NO_RES_RANGE);
+    }
+}
+
+if (!function_exists('gethostbyname6')) {
+    /**
+     * Use AAAA DNS Record to get (first) IPv6 address for given domain
+     *
+     * @param $domain
+     * @return string
+     */
+    function gethostbyname6(string $domain) : string
+    {
+        $dnsRecord = dns_get_record($domain, DNS_AAAA);
+
+        if (is_array($dnsRecord)
+            && array_key_exists(0, $dnsRecord)
+            && array_key_exists('ipv6', $dnsRecord[0])
+            && filter_var($dnsRecord[0]['ipv6'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)
+        ) {
+            return $dnsRecord[0]['ipv6'];
+        }
+        return $domain;
+    }
+}

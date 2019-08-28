@@ -583,9 +583,48 @@ route_exists('route.foobar')
 // returns: false
 ```
 
+##### `gethostbyname6($domain)`
+Returns a IPv6 address for given domain by using the DNS AAAA records. If none is found, the input domain is returned, much like `gethostbyname()` is doing for IPv4.
+
+```php
+gethostbyname6('ipv4onlydomain.tld');
+
+// returns: ipv4onlydomain.tld
+
+gethostbyname6('example.com')
+
+// returns: 2606:2800:220:1:248:1893:25c8:1946
+```
+
+##### `is_public_ip($ip)`
+Returns if given IP is a public IPv4 or IPv6 address (vs. private or reserved)
+
+```php
+is_public_ip('127.0.0.1'); // localhost
+
+// returns: false
+
+is_public_ip('::1/128'); // localhost
+
+// returns: false
+
+is_public_ip('192.168.1.42') // private network
+
+// returns: false
+
+$ipv4 = gethostbyname('example.com');
+is_public_ip($ipv4);
+
+// returns: true
+
+$ipv6 = gethostbyname6('example.com');
+is_public_ip($ipv6);
+
+// returns true;
+```
 
 ### String
-#### `str_icontains($haystack, $needle)`
+#### `str_icontains($haystack, $needle)`    
 Similar to [Str::contains()](https://laravel.com/docs/5.7/helpers#method-str-contains) but case _insensitive_.
 
 ```php
@@ -845,7 +884,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.36
+* Version 0.1.37
 
 ## Contact
 #### repat
