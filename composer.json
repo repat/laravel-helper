@@ -4,39 +4,28 @@
     "keywords": ["laravel", "helper", "files", "array", "database", "strings", "date"],
     "homepage": "https://repat.de",
     "license": "MIT",
-    "version" : "0.1.38",
+    "version" : "0.2",
     "authors": [
         {"name": "repat", "email": "repat@repat.de"}
     ],
     "require": {
-        "ext-curl": "*",
-        "illuminate/database": "5.*",
-        "illuminate/support": "5.*",
-        "nesbot/carbon": "^1.26.3 || ^2.0",
+        "illuminate/database": "5.*|6.*|7.*",
         "php": ">=7.2",
-        "repat/date-constants": "*",
-        "repat/http-constants": "*",
-        "stevegrunwell/time-constants": "*"
+        "repat/php-helper": "^0.1"
     },
     "autoload": {
         "files": [
-            "src/defines.php",
-            "src/array_helpers.php",
             "src/database_helpers.php",
-            "src/date_helpers.php",
+            "src/defines.php",
             "src/html_helpers.php",
-            "src/misc_helpers.php",
             "src/networking_helpers.php",
             "src/object_helpers.php",
-            "src/optional_packages_helpers.php",
-            "src/string_helpers.php"
+            "src/optional_packages_helpers.php"
         ]
     },
     "minimum-stability" : "dev",
     "suggest": {
         "astrotomic/laravel-translatable": "Required to use translated_attributes()",
-        "league/commonmark" : "Required to use markdown2html()",
-        "spatie/laravel-image-optimizer" : "Required to use ImageOptimizer in extract_inline_img()",
-        "layershifter/tld-extract" : "Required to parse domains with domain()"
+        "spatie/laravel-image-optimizer" : "Required to use ImageOptimizer in extract_inline_img()"
     }
 }
