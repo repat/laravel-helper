@@ -857,6 +857,7 @@ contrast_color('#496379');
 * `MARIADB_DEFAULT_STRLEN`: 191
 * `MULTIPLE_TRANS`: 2
 * `ONE_HUNDRED_PERCENT`: 100
+* `NBSP`: `\xc2\xa0`
 * `HTTP_1_0_VERBS`: [get, head, post]
 * `HTTP_1_1_VERBS`: [get, head, post, connect, delete, options, put, trace]
 * `HTTP_VERBS`: [get, head, post, connect, delete, options, put, trace, patch]
@@ -884,7 +885,7 @@ TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DH
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.1.37
+* Version 0.1.38
 
 ## Contact
 #### repat

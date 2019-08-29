@@ -49,6 +49,14 @@ if (! defined('ONE_HUNDRED_PERCENT')) {
     define('ONE_HUNDRED_PERCENT', 100);
 }
 
+if (! defined('NBSP')) {
+    /**
+     * Non-Breaking Space, hard to spot invisible char
+     * @var string
+     */
+    define('NBSP', "\xc2\xa0");
+}
+
 /*
 |--------------------------------------------------------------------------
 | Networking
