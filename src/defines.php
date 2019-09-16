@@ -18,6 +18,7 @@ if (! defined('HTTP_VERBS_LARAVEL')) {
 | Regex
 |--------------------------------------------------------------------------
 */
+
 if (! defined('REGEX_IMG_BASE64_SRC')) {
     /**
      * String to parse a base64 encoded inline image
@@ -32,4 +33,19 @@ if (! defined('REGEX_IMG_BASE64_REPLACE')) {
      * @var string
      */
     define('REGEX_IMG_BASE64_REPLACE', '/src=(\"data:image\/[a-zA-Z]*;base64,[^\"]*)\"/');
+}
+
+/*
+|--------------------------------------------------------------------------
+| Misc
+|--------------------------------------------------------------------------
+*/
+
+if (! defined('MULTIPLE_TRANS')) {
+    /**
+     * Minimum for trans_choice() to trigger the plural version
+     *
+     * @var int
+     */
+    define('MULTIPLE_TRANS', 2); // at least 2 is multiple
 }

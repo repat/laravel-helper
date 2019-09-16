@@ -219,6 +219,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * `HTTP_VERBS_LARAVEL`: [all, get, head, post, delete, options, put, patch]
 * `REGEX_IMG_BASE64_SRC`: Regular Expression used to find a base64 encoded image in HTML text
 * `REGEX_IMG_BASE64_REPLACE`: Regular Expression used to replace a base64 encoded image in HTML text
+* `MULTIPLE_TRANS`: 2
 
 ## Contributors
 * https://github.com/bertholf
@@ -227,7 +228,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.2
+* Version 0.2.1
 
 ## Contact
 #### repat
