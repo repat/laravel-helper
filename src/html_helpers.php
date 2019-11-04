@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('extract_inline_img')) {
+if (! function_exists('extract_inline_img')) {
     /**
      * Extracts base64 encoded inline images from HTML text, save it to the harddrive
      * and replace them in `$text` with a public URL
@@ -25,7 +25,7 @@ if (!function_exists('extract_inline_img')) {
                 $filename = uniqid() . '.' . $extension;
                 $filePath = str_finish($storagePath, '/') . $filename;
 
-                if (!file_exists($storagePath)) {
+                if (! file_exists($storagePath)) {
                     mkdir($storagePath, $mode = 0777, $recursive = true);
                 }
 

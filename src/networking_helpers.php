@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('named_routes')) {
+if (! function_exists('named_routes')) {
     /**
      * Returns array of all named routes in a routes file or null on error
      *
@@ -10,7 +10,7 @@ if (!function_exists('named_routes')) {
      */
     function named_routes(string $filepath, ?string $verb = null) : ?array
     {
-        if (!file_exists($filepath)) {
+        if (! file_exists($filepath)) {
             return null;
         }
 
@@ -19,9 +19,9 @@ if (!function_exists('named_routes')) {
         $verb = strtolower($verb);
         $regex = '/name\(\'([0-9a-z\.\_]*)\'\)';
 
-        if (!empty($verb) && !in_array($verb, HTTP_VERBS_LARAVEL)) {
+        if (! empty($verb) && ! in_array($verb, HTTP_VERBS_LARAVEL)) {
             return null;
-        } elseif (!empty($verb)) {
+        } elseif (! empty($verb)) {
             $regex .= '.*\-\>' . $verb . '\(/';
         }
 
@@ -33,7 +33,7 @@ if (!function_exists('named_routes')) {
     }
 }
 
-if (!function_exists('routes_path')) {
+if (! function_exists('routes_path')) {
     /**
      * Get the path to the routes folder, similar to `app_path()` etc
      *
@@ -46,7 +46,7 @@ if (!function_exists('routes_path')) {
     }
 }
 
-if (!function_exists('current_route_name')) {
+if (! function_exists('current_route_name')) {
     /**
      * If the current Route has a name, otherwise return `null`
      *
@@ -58,7 +58,7 @@ if (!function_exists('current_route_name')) {
     }
 }
 
-if (!function_exists('all_routes')) {
+if (! function_exists('all_routes')) {
     /**
      * Array of all Routes and their properties
      *
@@ -82,7 +82,7 @@ if (!function_exists('all_routes')) {
     }
 }
 
-if (!function_exists('route_exists')) {
+if (! function_exists('route_exists')) {
     /**
      * Wrapper around all_routes()
      *

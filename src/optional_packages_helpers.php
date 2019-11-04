@@ -1,5 +1,6 @@
 <?php
-if (!function_exists('translated_attributes')) {
+
+if (! function_exists('translated_attributes')) {
     /**
      * Uses Reflection to get the translated attributes of
      * `astrotomic/laravel-translatable` Models

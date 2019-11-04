@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('morph_map')) {
+if (! function_exists('morph_map')) {
     /**
      * Returns Laravels MorphMap set in `AppServiceProvider`
      *
@@ -12,7 +12,7 @@ if (!function_exists('morph_map')) {
     }
 }
 
-if (!function_exists('morph_map_key')) {
+if (! function_exists('morph_map_key')) {
     /**
      * Returns short version of $fqcn class
      * (Reverse search in morphMap)
@@ -28,18 +28,19 @@ if (!function_exists('morph_map_key')) {
     }
 }
 
-if (!function_exists('cache_get_or_add')) {
+if (! function_exists('cache_get_or_add')) {
     /**
      * Transforms an object into an array
      *
      * @param  string $key
      * @param  callable $function
+     * @param  int|null $seconds
      * @return mixed
      */
-    function cache_get_or_add(string $key, callable $function)
+    function cache_get_or_add(string $key, callable $function, ?int $seconds = null)
     {
         $result = \Cache::get($key, $function);
-        \Cache::add($key, $result);
+        \Cache::add($key, $result, $seconds);
         return $result;
     }
 }

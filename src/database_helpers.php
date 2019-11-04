@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('mysql_headers')) {
+if (! function_exists('mysql_headers')) {
     /**
      * Returns the headers of a MySQL/MariaDB table
      * or empty array in case of error
@@ -28,7 +28,7 @@ if (!function_exists('mysql_headers')) {
     }
 }
 
-if (!function_exists('print_db_session')) {
+if (! function_exists('print_db_session')) {
     /**
      * Prints the session from the DB
      *
@@ -44,13 +44,13 @@ if (!function_exists('print_db_session')) {
                         ->where('user_id', auth()->id())
                         ->first()
                         ->payload
-                        )
-                    )
-                );
+                )
+            )
+        );
     }
 }
 
-if (!function_exists('get_free_slug')) {
+if (! function_exists('get_free_slug')) {
     /**
      * Looks up a free slug for the `$fqcn` eloquent model,
      * Suggesting `$toSlug` for field `$field`
@@ -83,7 +83,7 @@ if (!function_exists('get_free_slug')) {
         }
 
         // search for a free slug
-        while (!empty($query->first())) {
+        while (! empty($query->first())) {
             $slug = str_slug($toSlug) . $counter;
             $counter++;
             $query = resolve($fqcn)::where($field, $slug);
@@ -96,7 +96,7 @@ if (!function_exists('get_free_slug')) {
     }
 }
 
-if (!function_exists('table_headers')) {
+if (! function_exists('table_headers')) {
     /**
      * Gets table headers the Laravel way via the Schema builder
      *
@@ -106,5 +106,19 @@ if (!function_exists('table_headers')) {
     function table_headers(\Illuminate\Database\Eloquent\Model $model) : array
     {
         return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
+    }
+}
+
+if (! function_exists('insert_bindings')) {
+    /**
+     * Uses toSql() and getBindings() to get full SQL Query
+     *
+     * @param  \Illuminate\Database\Query\Builder $query
+     * @return string
+     */
+    function insert_bindings(\Illuminate\Database\Query\Builder $query) : string
+    {
+        $querySql = str_replace(['?'], ['\'%s\''], $query->toSql());
+        return vsprintf($querySql, $query->getBindings());
     }
 }

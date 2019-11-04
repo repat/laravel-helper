@@ -116,6 +116,14 @@ $posts = cache_get_or_add('posts', function() {
 });
 ```
 
+#### `insert_bindings($query)`
+Inserts values into `?` from the `->toSql()` string.
+
+```php
+insert_bindings(DB::table('users')->where('id', 1));
+// returns: SELECT * FROM `users` WHERE `id` = '1'
+```
+
 ### Networking
 #### `route_path($path)`
 Get the path to the Laravel routes folder, similar to `app_path()`, see [Helpers Documentation](https://laravel.com/docs/5.8/helpers). It will append `$path` but it's not mandatory.
@@ -228,7 +236,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.2.1
+* Version 0.2.2
 
 ## Contact
 #### repat
