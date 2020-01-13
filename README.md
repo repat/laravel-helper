@@ -5,7 +5,7 @@
 **laravel-helper** is a package full of helper functions I found useful when developing applications with Laravel. All functions are wrapped with a `functions_exists()` in case of conflicts.
 
 Also have a look at
-* https://laravel.com/docs/5.8/helpers
+* https://laravel.com/docs/6.x/helpers
 * http://calebporzio.com/11-awesome-laravel-helper-functions
 * https://packagist.org/packages/illuminated/helper-functions
 * https://packagist.org/packages/laravel/helper-functions
@@ -82,6 +82,14 @@ get_free_slug('foobar', 'slug', User::class, 1, 'id');
 // returns: foobar1
 ```
 
+#### `insert_bindings($query)`
+Inserts values into `?` from the `->toSql()` string.
+
+```php
+insert_bindings(DB::table('users')->where('id', 1));
+// returns: SELECT * FROM `users` WHERE `id` = '1'
+```
+
 ### Object
 
 #### `morph_map()`
@@ -116,12 +124,12 @@ $posts = cache_get_or_add('posts', function() {
 });
 ```
 
-#### `insert_bindings($query)`
-Inserts values into `?` from the `->toSql()` string.
+#### `dispatch_tinker($job)`
+Dispatches jobs from the [tinker REPL](https://laravel.com/docs/6.x/artisan#tinker).
 
 ```php
-insert_bindings(DB::table('users')->where('id', 1));
-// returns: SELECT * FROM `users` WHERE `id` = '1'
+dispatch_tinker(new \App\Jobs\CleanupJob());
+// returns: 1 (id of job)
 ```
 
 ### Networking
@@ -236,7 +244,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.2.2
+* Version 0.2.3
 
 ## Contact
 #### repat

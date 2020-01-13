@@ -44,3 +44,18 @@ if (! function_exists('cache_get_or_add')) {
         return $result;
     }
 }
+
+if (! function_exists('dispatch_tinker')) {
+    /**
+     * Dispatch jobs from tinker
+     *
+     * see https://github.com/laravel/tinker/issues/30
+     *
+     * @param mixed $job
+     * @return int
+     */
+    function dispatch_tinker($job) : int
+    {
+        return app(\Illuminate\Contracts\Bus\Dispatcher::class)->dispatch($job);
+    }
+}
