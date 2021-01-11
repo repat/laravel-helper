@@ -5,14 +5,15 @@
 **laravel-helper** is a package full of helper functions I found useful when developing applications with Laravel. All functions are wrapped with a `functions_exists()` in case of conflicts.
 
 Also have a look at
-* https://laravel.com/docs/6.x/helpers
-* http://calebporzio.com/11-awesome-laravel-helper-functions
+* https://laravel.com/docs/8.x/helpers
+* http://calebporzio.com/11-awesome-laravel-helper-functions (abandoned?)
 * https://packagist.org/packages/illuminated/helper-functions
 * https://packagist.org/packages/laravel/helper-functions
 
 Ideas what should go in here? Write a pull request or email!
 
 ## Installation
+
 `$ composer require repat/laravel-helper`
 
 ## Documentation
@@ -20,7 +21,9 @@ Ideas what should go in here? Write a pull request or email!
 > ⚠️ The majority of helper functions are now in repat/php-helper which this package is based on. You can find the documentation at https://github.com/repat/php-helper
 
 ### Database
+
 #### `mysql_headers($table, $assoc = false)`
+
 Returns an array of MySQL headers/columns or empty array in case of an error. If the second parameter is set `true` (default is `false`) it returns an associative array.
 
 ```php
@@ -32,6 +35,7 @@ print_r(mysql_headers("test_table", $assoc = true));
 ```
 
 #### `table_headers($model)`
+
 Returns the database table headers, similar to `mysql_headers()`, but based on an object of a Eloquent Model.
 
 ```php
@@ -44,6 +48,7 @@ print_r(table_headers($user));
 ```
 
 #### `print_db_session($table = 'sessions')`
+
 `print_r()` the session of current user.
 
 ```php
@@ -58,6 +63,7 @@ print_db_session();
 ```
 
 #### `get_free_slug($toSlug, $field, $fqcn, $id, $pk)`
+
 Returns a unique slug for an Eloquent Model given the following parameters:
 
 * `$toSlug`: suggestion for the slug
@@ -83,6 +89,7 @@ get_free_slug('foobar', 'slug', User::class, 1, 'id');
 ```
 
 #### `insert_bindings($query)`
+
 Inserts values into `?` from the `->toSql()` string.
 
 ```php
@@ -93,6 +100,7 @@ insert_bindings(DB::table('users')->where('id', 1));
 ### Object
 
 #### `morph_map()`
+
 Returns the morphMap from `AppServiceProvider` set with `Relation::morphMap()`.
 
 ```php
@@ -104,6 +112,7 @@ morph_map();
 ```
 
 #### `morph_map_key($fqcn)`
+
 Reverse lookup for a class in the morphMap of the `AppServiceProvider` set with `Relation::morphMap()`.
 
 ```php
@@ -114,6 +123,7 @@ morph_map_key(User::class);
 ```
 
 #### `cache_get_or_add($key, $callable)`
+
 Returns Cache for given key or adds the return value from the callable to the cache and then returns it.
 
 ```php
@@ -125,6 +135,7 @@ $posts = cache_get_or_add('posts', function() {
 ```
 
 #### `dispatch_tinker($job)`
+
 Dispatches jobs from the [tinker REPL](https://laravel.com/docs/6.x/artisan#tinker).
 
 ```php
@@ -133,7 +144,9 @@ dispatch_tinker(new \App\Jobs\CleanupJob());
 ```
 
 ### Networking
+
 #### `route_path($path)`
+
 Get the path to the Laravel routes folder, similar to `app_path()`, see [Helpers Documentation](https://laravel.com/docs/5.8/helpers). It will append `$path` but it's not mandatory.
 
 ```php
@@ -145,6 +158,7 @@ route_path('web.php');
 ```
 
 #### `named_routes($path, $verb)`
+
 Returns array of all named routes in a routes file or `null` on error. It's possible to pass an HTTP verb/method defined in `HTTP_VERBS_LARAVEL` (see below).
 
 ```php
@@ -161,6 +175,7 @@ named_routes('/var/www/htdocs/laravel/routes/web.php', 'get');
 ```
 
 ##### `current_route_name()`
+
 If the current route has a name, otherwise return `null`.
 
 ```php
@@ -178,6 +193,7 @@ current_route_name();
 ```
 
 ##### `all_routes()`
+
 Returns an array of all routes like so:
 
 ```php
@@ -193,6 +209,7 @@ all_routes();
 ```
 
 ##### `route_exists($namedRoute)`
+
 Checks if the given route is a named route in any routes file.
 
 ```php
@@ -206,9 +223,11 @@ route_exists('route.foobar')
 ```
 
 ### Optional Packages
+
 Optional packages suggested by this are required for these functions to work.
 
 #### `translated_attributes($fqcn)`
+
 Uses [astrotomic/laravel-translatable](https://github.com/astrotomic/laravel-translatable) and Reflection to get the `translatedAttributes` attribute of a Model.
 
 * `$ composer require astrotomic/laravel-translatable`
@@ -221,7 +240,9 @@ translated_attributes(Product::class);
 ```
 
 ### HTML
+
 #### `extract_inline_img($text, $storagePath, $srcPath, $optimize)`
+
 Extracts an inline image from a text, saves it on the harddrive and puts in the filename with the [src](https://developer.mozilla.org/de/docs/Web/HTML/Element/img) attribute. Can use the [spatie/laravel-image-optimizer](https://github.com/spatie/laravel-image-optimizer) to optimize images after upload but it's disabled by default.
 
 * `$ composer require spatie/laravel-image-optimizer`
@@ -232,22 +253,28 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 ```
 
 ### Constants
+
 * `HTTP_VERBS_LARAVEL`: [all, get, head, post, delete, options, put, patch]
 * `REGEX_IMG_BASE64_SRC`: Regular Expression used to find a base64 encoded image in HTML text
 * `REGEX_IMG_BASE64_REPLACE`: Regular Expression used to replace a base64 encoded image in HTML text
 * `MULTIPLE_TRANS`: 2
 
 ## Contributors
+
 * https://github.com/bertholf
 
 ## License
+
 * MIT, see [LICENSE](https://github.com/repat/laravel-helper/blob/master/LICENSE)
 
 ## Version
-* Version 0.3
+
+* Version 0.3.1
 
 ## Contact
+
 #### repat
+
 * Homepage: https://repat.de
 * e-mail: repat@repat.de
 * Twitter: [@repat123](https://twitter.com/repat123 "repat123 on twitter")

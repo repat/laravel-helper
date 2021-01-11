@@ -54,7 +54,11 @@ if (! function_exists('current_route_name')) {
      */
     function current_route_name() : ?string
     {
-        return \Route::getCurrentRoute()->getName();
+        $route = \Route::getCurrentRoute();
+        if (! empty($route)) {
+            return $route->getName();
+        }
+        return null;
     }
 }
 

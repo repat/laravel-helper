@@ -4,7 +4,7 @@
     "keywords": ["laravel", "helper", "files", "array", "database", "strings", "date"],
     "homepage": "https://repat.de",
     "license": "MIT",
-    "version" : "0.3",
+    "version" : "0.3.1",
     "authors": [
         {"name": "repat", "email": "repat@repat.de"}
     ],
