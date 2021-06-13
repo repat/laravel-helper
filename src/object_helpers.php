@@ -52,9 +52,9 @@ if (! function_exists('dispatch_tinker')) {
      * see https://github.com/laravel/tinker/issues/30
      *
      * @param mixed $job
-     * @return int
+     * @return int|string
      */
-    function dispatch_tinker($job) : int
+    function dispatch_tinker($job)
     {
         return app(\Illuminate\Contracts\Bus\Dispatcher::class)->dispatch($job);
     }
