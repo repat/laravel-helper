@@ -269,7 +269,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 
 ## Version
 
-* Version 0.3.2
+* Version 0.4
 
 ## Contact
 
