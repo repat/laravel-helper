@@ -5,7 +5,7 @@
 **laravel-helper** is a package full of helper functions I found useful when developing applications with Laravel. All functions are wrapped with a `functions_exists()` in case of conflicts.
 
 Also have a look at
-* https://laravel.com/docs/8.x/helpers
+* https://laravel.com/docs/10.x/helpers
 * http://calebporzio.com/11-awesome-laravel-helper-functions (abandoned?)
 * https://packagist.org/packages/illuminated/helper-functions
 * https://packagist.org/packages/laravel/helper-functions
@@ -269,7 +269,7 @@ extract_inline_img("<img src='data:image/jpeg;base64,...>", '/var/www/htdocs/lar
 
 ## Version
 
-* Version 0.4
+* Version 0.5
 
 ## Contact
 
